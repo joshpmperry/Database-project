@@ -3,29 +3,69 @@
 <div class="shadow p-3 mb-5 bg-body rounded" style="margin: 40px 40px 40px 40px;">
 <form method="POST">
   <div class="mb-3">
-    <label for="first_name" class="form-label">First Name</label>
-    <input type="text" class="form-control" id="first_name" name="first_name" />
+    <label for="customer_lastname" class="form-label">First Name</label>
+    <input type="text" class="form-control" id="customer_firstname" name="customer_firstname" />
   </div>  
   <div class="mb-3">
-    <label for="last_name" class="form-label">Last Name</label>
-    <input type="text" class="form-control" id="last_name" name="last_name" />
+    <label for="customer_lastname" class="form-label">Last Name</label>
+    <input type="text" class="form-control" id="customer_lastname" name="customer_lastname" />
   </div>
   <div class="mb-3">
-    <label for="username" class="form-label">Username</label>
-    <input type="text" class="form-control" id="username" name="username" />
+    <label for="start">Date of Birth</label>
+    <div>
+      <input type="date" id="customer_dob" name="customer_dob"
+       value="2000-05-26"
+       min="1950-01-01" max="2005-12-31">
+    </div>
   </div>
   <div class="mb-3">
-    <label for="email" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" />
+    <label for="customer_age" class="form-label">Age</label>
+    <input type="text" class="form-control" id="customer_age" name="customer_age" pattern="[0-9]{2}" />
+  </div>
+  <fieldset>
+    <legend>Select your Gender :</legend>
+
+    <div>
+      <input type="radio" id="customer_gender" name="customer_gender" value="male"
+             checked>
+      <label for="male">male</label>
+    </div>
+    <div>
+      <input type="radio" id="customer_gender" name="customer_gender" value="female">
+      <label for="female">female</label>
+    </div>
+    <div>
+      <input type="radio" id="customer_gender" name="customer_gender" value="other">
+      <label for="Other">Other</label>
+    </div>
+  </fieldset>
+  <div class="mb-3">
+    <label for="customer_email" class="form-label">Email address</label>
+    <input type="email" class="form-control" id="customer_email" name="customer_email" aria-describedby="emailHelp" />
     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
   </div>
-  <div class="mb-3">
-    <label for="password" class="form-label">Password</label>
-    <input type="password" class="form-control" id="password" name="password" />
+  <div>
+    <label for="phone">Enter your phone number:</label>
+    <div>
+      <input type="tel" id="customer_phone_number" name="customer_phone_number" pattern="[0-9]{10}">
+    </div> 
   </div>
   <div class="mb-3">
-    <label for="confirm_password" class="form-label">Confirm Password</label>
-    <input type="password" class="form-control" id="confirm_password" name="confirm_password" />
+    <label for="customer_address" class="form-label">Address</label>
+    <input type="text" class="form-control" id="customer_address" name="customer_address" aria-describedby="emailHelp" />
+    <div id="emailHelp" class="form-text">We'll never share your address with anyone else.</div>
+  </div>
+  <div>
+    <label for="phone">Enter your Citizen-Identification-Number:</label>
+    <div>
+      <input type="tel" id="customer_identification_number" name="customer_identification_number" pattern="[0-9]{13}">
+    </div> 
+  </div>
+  <div>
+    <label for="phone">Enter your Passport-Identification-Number:</label>
+    <div>
+      <input type="tel" id="customer_passport" name="customer_passport" pattern="[0-9]{9}">
+    </div> 
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
