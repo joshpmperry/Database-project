@@ -6,7 +6,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: consolas;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .container{
@@ -38,7 +38,7 @@ body{
 }
 
 .container .card:hover .face.face1{
-    background: #ff0057;
+    background: #9d1919;
     transform: translateY(0);
 }
 
@@ -53,6 +53,9 @@ body{
 
 .container .card .face.face1 .content img{
     max-width: 100px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .container .card .face.face1 .content h3{
@@ -82,6 +85,7 @@ body{
 .container .card .face.face2 .content p{
     margin: 0;
     padding: 0;
+    color: #000;
 }
 
 .container .card .face.face2 .content a{
