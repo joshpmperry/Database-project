@@ -90,7 +90,7 @@ def register():
     elif request.method == 'POST':
         userDetails = request.form
         
-        if userDetails['password'] != userDetails['confirm_password']:
+        if userDetails['customer_password'] != userDetails['customer_confirm_password']:
             flash('Passwords do not match!', 'danger')
             return render_template('register.html')
         
