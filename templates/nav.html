@@ -1,5 +1,5 @@
 {% block content %}
-<link rel="stylesheet" href='/static/test.css' />
+<link rel="stylesheet" href='/static/nav.css' />
 
     <input class="menu-icon" type="checkbox" id="menu-icon" name="menu-icon"/>
     <label for="menu-icon"></label>
@@ -9,7 +9,8 @@
         <li><a href="{{ url_for('vehicle') }}">Vehicle</a></li>
         <li><a href="{{ url_for('location') }}">Locations</a></li>
         <li><a href="{{ url_for('reservation') }}">Reservations</a></li>
-        <li><a href="{{ url_for('payment')}}">Profile</a></li>
+        <li><a href="{{ url_for('login')}}">Profile</a></li>
+        <li><a href="{{ url_for('test')}}">test</a></li>
 
       </ul>
     </nav>

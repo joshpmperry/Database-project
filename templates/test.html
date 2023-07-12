@@ -1,18 +1,42 @@
+{% extends 'base.html' %}
 {% block content %}
 <link rel="stylesheet" href='/static/test.css' />
-
-    <input class="menu-icon" type="checkbox" id="menu-icon" name="menu-icon"/>
-    <label for="menu-icon"></label>
-    <nav class="nav">     
-      <ul class="pt-5">
-        <li><a href="{{ url_for('index') }}">Home</a></li>
-        <li><a href="{{ url_for('vehicle') }}">Vehicle</a></li>
-        <li><a href="{{ url_for('location') }}">Locations</a></li>
-        <li><a href="{{ url_for('reservation') }}">Reservations</a></li>
-        <li><a href="{{ url_for('payment')}}">Profile</a></li>
-
-      </ul>
-    </nav>
-  
-
+<div class="container">
+    <div class="card card0">
+      <div class="border">
+        <h2><a href="{{url_for('truck')}}" class="text-light" style="text-decoration:none">Truck's</a></h2>
+        <div class="icons">
+          <i class="fa fa-codepen" aria-hidden="true"></i>
+          <i class="fa fa-instagram" aria-hidden="true"></i>
+          <i class="fa fa-dribbble" aria-hidden="true"></i>
+          <i class="fa fa-twitter" aria-hidden="true"></i>
+          <i class="fa fa-facebook" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+    <div class="card card1">
+      <div class="border">
+        <h2><a href="{{url_for('sedan')}}" class="text-light" style="text-decoration:none">Sedan's</a></h2>
+        <div class="icons">
+          <i class="fa fa-codepen" aria-hidden="true"></i>
+          <i class="fa fa-instagram" aria-hidden="true"></i>
+          <i class="fa fa-dribbble" aria-hidden="true"></i>
+          <i class="fa fa-twitter" aria-hidden="true"></i>
+          <i class="fa fa-facebook" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+    <div class="card card2">
+      <div class="border">
+        <h2><a href="{{url_for('suv')}}" class="text-light" style="text-decoration:none">SUV's</a></h2>
+        <div class="icons">
+          <i class="fa fa-codepen" aria-hidden="true"></i>
+          <i class="fa fa-instagram" aria-hidden="true"></i>
+          <i class="fa fa-dribbble" aria-hidden="true"></i>
+          <i class="fa fa-twitter" aria-hidden="true"></i>
+          <i class="fa fa-facebook" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}

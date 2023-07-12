@@ -43,17 +43,17 @@ def vehicle():
     return render_template('vehicle.html')
 
 
-@app.route('/car/')
-def car():
+@app.route('/sedan/')
+def sedan():
     cur = mysql.connection.cursor()
-    resultValue =  cur.execute("SELECT * FROM vehicle WHERE vehicle_type = 'sedan'")
+    resultValue =  cur.execute("SELECT * FROM vehicle where vehicle_type = 'sedan'")
     print(resultValue)
     if resultValue > 0:
         vehicle = cur.fetchall()
         cur.close()
-        return render_template('car.html', cars=vehicle)
+        return render_template('sedan.html', cars=vehicle)
     cur.close()
-    return render_template('car.html', cars=None)
+    return render_template('sedan.html', cars=None)
 
 @app.route('/suv/')
 def suv():
@@ -77,7 +77,8 @@ def payment():
         p1 = userDetails['customer_firstname']
         p2 = userDetails['customer_lastname']
         p3 = userDetails['customer_dob']
-  
+
+
         p5 = userDetails['customer_gender']
         p6 = userDetails['customer_email']
         p7 = userDetails['customer_phone_number']
@@ -89,10 +90,7 @@ def payment():
         q2 = userDetails['customer_payment_card_number']
         q3 = userDetails['customer_payment_card_cvc']
         q4 = userDetails['customer_payment_card_expiry_date']
-        
-        print(p1 + "," + p2 + "," + p3 + ","  + "," + p5 + "," + p6 + "," + p7 + "," + p8 + "," + p9 + "," + p10)
-        print(q1 + "," + q2 + "," + q3 + "," + q4)
-        
+
         queryStatement = (
             f"INSERT INTO "
             f"customer(customer_firstname,customer_lastname, customer_dob, customer_gender, customer_email, customer_phone_number, customer_address, customer_identification_number, customer_passport, customer_payment_type, customer_payment_card_number, customer_payment_card_cvc, customer_payment_card_expiry_date) "
