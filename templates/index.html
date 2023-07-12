@@ -1,7 +1,16 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<div class="display-2">
-Cars
-</div>
+
+{% if blogs %}
+        {% for blog in blogs %}
+            <div class="shadow p-3 mb-5 bg-light rounded" style="margin: 20px 40px 0px 40px;">
+                <a href="blogs/{{ blog['vehicle_ID'] }}">{{ blog['vehicle_brand'] }}</a>
+                Written by {{ blog['vehicle_type'] }}
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="displya-3">No Blog</div>
+    {% endif %}
 
 {% endblock %}

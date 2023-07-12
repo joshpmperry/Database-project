@@ -1,0 +1,33 @@
+<link rel="stylesheet" href='/static/car.css' />
+<script src="js/car.js"></script>
+
+  <main class="row title">
+    <ul>
+      <li>Sport</li>
+      <li>Entry $</li>
+      <li><span class="title-hide">#</span> Entries</li>
+      <li>Max</li>
+      <li>Time</li>
+    </ul>
+  </main>
+  
+{% if cars %}
+        {% for car in cars %}
+          <article class="row nfl">
+            <ul>
+              <li><a href="#">{{cars['vehicle_type']}}</a>
+              <li>{{ cars['vehicle_brand']}}</li>
+              <li>{{ cars['vehicle_color']}}</li>
+              <li>{{ cars['Vehicle_condition']}}</li>
+              <li>{{ cars['vehicle_passenger']}}</li>
+            </ul>
+            <ul class="more-content">
+              <li>This 1665-player contest boasts a $300,000.00 prize pool and pays out the top 300 finishing positions. First place wins $100,000.00. Good luck!</li>
+            </ul>
+          </article>
+        {% endfor %}
+    {% else %}
+        <div class="displya-3">No Cars</div>
+    {% endif %}
+
+{% endblock %}

@@ -40,7 +40,15 @@ def reservation():
 
 @app.route('/car/')
 def car():
-    return render_template('car.html')
+    cur = mysql.connection.cursor()
+    resultValue =  cur.execute("SELECT * FROM vehicle")
+    print(resultValue)
+    if resultValue > 0:
+        vehicle = cur.fetchall()
+        cur.close()
+        return render_template('car.html', cars=vehicle)
+    cur.close()
+    return render_template('car.html', cars=None)
 
 @app.route('/suv/')
 def suv():
@@ -50,18 +58,17 @@ def suv():
 def truck():
     return render_template('truck.html')
 
-@app.route('/register/', methods=['GET', 'POST'])
-def register():
+@app.route('/test/')
+def test():
+    return render_template('test.html')
+
+@app.route('/payment/', methods=['GET', 'POST'])
+def payment():
     if request.method == 'GET':
-        return render_template('register.html')
+        return render_template('paymentpage.html')
     elif request.method == 'POST':
         userDetails = request.form
-
-        # Check the password and confirm password
-        #if userDetails['password'] != userDetails['confirm_password']:
-        #    flash('Passwords do not match!', 'danger')
-        #    return render_template('register.html')
-
+        
         p1 = userDetails['customer_firstname']
         p2 = userDetails['customer_lastname']
         p3 = userDetails['customer_dob']
@@ -73,82 +80,27 @@ def register():
         p9 = userDetails['customer_identification_number']
         p10 = userDetails['customer_passport']
         
+        q1 = userDetails['payment_type']
+        q2 = userDetails['payment_card_number']
+        q3 = userDetails['payment_card_cvc']
+        q4 = userDetails['payment_card_date']
+        
         print(p1 + "," + p2 + "," + p3 + "," + p4 + "," + p5 + "," + p6 + "," + p7 + "," + p8 + "," + p9 + "," + p10)
-
+        print(q1 + "," + q2 + "," + q3 + "," + q4)
+        
         queryStatement = (
             f"INSERT INTO "
-            f"customer(customer_firstname,customer_lastname, customer_dob, customer_age, customer_gender, customer_email, customer_phone_number, customer_address, customer_identification_number, customer_passport) "
-            f"VALUES('{p1}', '{p2}', '{p3}', '{p4}','{p5}','{p6}','{p7}','{p8}','{p9}','{p10}')"
+            f"customer(customer_firstname,customer_lastname, customer_dob, customer_age, customer_gender, customer_email, customer_phone_number, customer_address, customer_identification_number, customer_passport, payment_type, payment_card_number, payment_card_cvc, payment_card_date) "
+            f"VALUES('{p1}', '{p2}', '{p3}', '{p4}','{p5}','{p6}','{p7}','{p8}','{p9}','{p10}','{q1}', '{q2}', '{q3}', '{q4}')"
         )
         print(queryStatement)
         cur = mysql.connection.cursor()
         cur.execute(queryStatement)
         mysql.connection.commit()
-        cur.close()
-
         flash("Form Submitted Successfully.", "success")
         return redirect('/')    
-    return render_template('register.html')
+    return render_template('paymentpage.html')
 
-
-@app.route('/login/', methods=['GET', 'POST'])
-def login():
-    if request.method == 'GET':
-        return render_template('login.html')
-    elif request.method == 'POST':
-        loginForm = request.form
-        username = loginForm['username']
-        cur = mysql.connection.cursor()
-        queryStatement = f"SELECT * FROM user WHERE username = '{username}'"
-        numRow = cur.execute(queryStatement)
-        if numRow > 0:
-            user =  cur.fetchone()
-            if check_password_hash(user['password'], loginForm['password']):
-
-                # Record session information
-                session['login'] = True
-                session['username'] = user['username']
-                session['userroleid'] = str(user['role_id'])
-                session['firstName'] = user['first_name']
-                session['lastName'] = user['last_name']
-                print(session['username'] + " roleid: " + session['userroleid'])
-                flash('Welcome ' + session['firstName'], 'success')
-                #flash("Log In successful",'success')
-                return redirect('/')
-            else:
-                cur.close()
-                flash("Password doesn't not match", 'danger')
-        else:
-            cur.close()
-            flash('User not found', 'danger')
-            return render_template('login.html')
-        cur.close()
-        return redirect('/')
-    return render_template('login.html')
-
-@app.route('/write-blog/', methods=['GET', 'POST'])
-def write_blog():
-    try:
-        username = session['username']
-    except:
-        flash('Please sign in first', 'danger')
-        return redirect('/login')
-    if request.method == 'POST':
-        blogpost = request.form
-        title = blogpost['title']
-        body = blogpost['body'] 
-        cur = mysql.connection.cursor()
-        queryStatement = (
-            f"INSERT INTO blog(title, body, username) "
-            f"VALUES('{title}','{body}','{username}')"
-        )
-        print(queryStatement)
-        cur.execute(queryStatement)
-        mysql.connection.commit()
-        cur.close()
-        flash("Successfully posted", 'success')
-        return redirect('/')
-    return render_template('write-blog.html')
 
 @app.route('/my-blogs/')
 def my_blogs():
@@ -169,4 +121,6 @@ def my_blogs():
         return render_template('my-blogs.html',my_blogs=None)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(
+        debug=True
+    )
