@@ -1,6 +1,43 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<h1>Vehicle Types</h1>
+<link rel="stylesheet" href='/static/vehicle.css' />
+<div class="container">
+    <div class="card card0">
+      <div class="border">
+        <h2><a href="{{url_for('truck')}}" class="text-light" style="text-decoration:none">Truck's</a></h2>
+        <div class="icons">
+          <i class="fa fa-codepen" aria-hidden="true"></i>
+          <i class="fa fa-instagram" aria-hidden="true"></i>
+          <i class="fa fa-dribbble" aria-hidden="true"></i>
+          <i class="fa fa-twitter" aria-hidden="true"></i>
+          <i class="fa fa-facebook" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+    <div class="card card1">
+      <div class="border">
+        <h2><a href="{{url_for('sedan')}}" class="text-light" style="text-decoration:none">Sedan's</a></h2>
+        <div class="icons">
+          <i class="fa fa-codepen" aria-hidden="true"></i>
+          <i class="fa fa-instagram" aria-hidden="true"></i>
+          <i class="fa fa-dribbble" aria-hidden="true"></i>
+          <i class="fa fa-twitter" aria-hidden="true"></i>
+          <i class="fa fa-facebook" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+    <div class="card card2">
+      <div class="border">
+        <h2><a href="{{url_for('suv')}}" class="text-light" style="text-decoration:none">SUV's</a></h2>
+        <div class="icons">
+          <i class="fa fa-codepen" aria-hidden="true"></i>
+          <i class="fa fa-instagram" aria-hidden="true"></i>
+          <i class="fa fa-dribbble" aria-hidden="true"></i>
+          <i class="fa fa-twitter" aria-hidden="true"></i>
+          <i class="fa fa-facebook" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}

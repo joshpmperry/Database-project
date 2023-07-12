@@ -135,7 +135,7 @@ def login():
             return render_template('login.html')
         cur.close()
         return redirect('/')
-    return render_template('login.html')
+    return render_template('paymentpage.html')
 
 @app.route('/my-blogs/')
 def my_blogs():
