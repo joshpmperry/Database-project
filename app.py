@@ -158,6 +158,13 @@ def login():
         return redirect('/')
     return render_template('register.html')
 
+@app.route('/logout')
+def logout():
+    session.clear()
+    flash("You have been logged out", 'info')
+    return redirect('/')
+
+
 @app.route('/my-blogs/')
 def my_blogs():
     try:
