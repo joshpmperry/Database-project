@@ -1,0 +1,18 @@
+{% block content %}
+<link rel="stylesheet" href='/static/test.css' />
+
+    <input class="menu-icon" type="checkbox" id="menu-icon" name="menu-icon"/>
+    <label for="menu-icon"></label>
+    <nav class="nav">     
+      <ul class="pt-5">
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('vehicle') }}">Vehicle</a></li>
+        <li><a href="{{ url_for('location') }}">Locations</a></li>
+        <li><a href="{{ url_for('reservation') }}">Reservations</a></li>
+        <li><a href="{{ url_for('payment')}}">Profile</a></li>
+
+      </ul>
+    </nav>
+  
+
+{% endblock %}

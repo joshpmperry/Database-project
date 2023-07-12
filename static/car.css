@@ -2,6 +2,10 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
 /* colors */
 /* body */
+
+*{
+  z-index: 1000;
+}
 body {
     background-color: #e3e3e3;
   font-family: "Open Sans", sans-serif;
@@ -211,7 +215,7 @@ ul.more-content li {
   display: block;
   height: 50px;
   width: 100%;
-  color: rgba(128, 128, 128, 0.9);
+  color: rgba(185, 183, 183, 0.9);
 }
 @media only screen and (max-width: 767px) {
   ul.more-content li {

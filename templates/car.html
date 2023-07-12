@@ -2,7 +2,6 @@
 {% block content %}
 
 <link rel="stylesheet" href='/static/car.css' />
-<script src="js/car.js"></script>
 <!-- Row title -->
 <main class="row title">
   <ul>
@@ -27,12 +26,11 @@
               <li>{{ car['location_ID']}}</li>
             </ul>
             <ul class="more-content">
-              <li>This 1665-player contest boasts a $300,000.00 prize pool and pays out the top 300 finishing positions. First place wins $100,000.00. Good luck!</li>
+              <li>Milage: {{car['vehicle_milage']}}, Color: {{ car['vehicle_color']}}, Gear Type: {{car['vehicle_gear_type']}}, for more information click on {{car['vehicle_type']}}</li>
             </ul>
           </article>
         {% endfor %}
     {% else %}
         <div class="displya-3">No Cars</div>
     {% endif %}
-
 {% endblock %}
