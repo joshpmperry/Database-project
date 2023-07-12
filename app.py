@@ -51,17 +51,33 @@ def sedan():
     if resultValue > 0:
         vehicle = cur.fetchall()
         cur.close()
-        return render_template('sedan.html', cars=vehicle)
+        return render_template('car.html', cars=vehicle)
     cur.close()
-    return render_template('sedan.html', cars=None)
+    return render_template('car.html', cars=None)
 
 @app.route('/suv/')
 def suv():
-    return render_template('suv.html')
+    cur = mysql.connection.cursor()
+    resultValue =  cur.execute("SELECT * FROM vehicle where vehicle_type = 'suv'")
+    print(resultValue)
+    if resultValue > 0:
+        vehicle = cur.fetchall()
+        cur.close()
+        return render_template('car.html', cars=vehicle)
+    cur.close()
+    return render_template('car.html', cars=None)
 
 @app.route('/truck/')
 def truck():
-    return render_template('truck.html')
+    cur = mysql.connection.cursor()
+    resultValue =  cur.execute("SELECT * FROM vehicle where vehicle_type = 'suv'")
+    print(resultValue)
+    if resultValue > 0:
+        vehicle = cur.fetchall()
+        cur.close()
+        return render_template('car.html', cars=vehicle)
+    cur.close()
+    return render_template('car.html', cars=None)
 
 @app.route('/test/')
 def test():
@@ -108,13 +124,13 @@ def login():
         return render_template('login.html')
     elif request.method == 'POST':
         loginForm = request.form
-        username = loginForm['username']
+        username = loginForm['customer_email']
         cur = mysql.connection.cursor()
         queryStatement = f"SELECT * FROM user WHERE username = '{username}'"
         numRow = cur.execute(queryStatement)
         if numRow > 0:
             user =  cur.fetchone()
-            if check_password_hash(user['password'], loginForm['password']):
+            if check_password_hash(user['customer_password'], loginForm['customer_password']):
 
                 # Record session information
                 session['login'] = True

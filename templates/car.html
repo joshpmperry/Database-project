@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<link rel="stylesheet" href='/static/car.css' />
+<link rel="stylesheet" href='/static/nav.css' />
+<h1> Sedan Available</h1>
+
+<table>
+  <thead><tr>
+      <th>Brand</th>
+      <th>Model</th>
+      <th>Condition</th>
+      <th>Seats</th>
+      <th>Milage</th>
+      <th>Color</th>
+      <th>Gear Type</th>
+      <th>Reservations</th>
+
+    </tr><thead>
+  <tbody>
+    {% if cars %}
+      {% for car in cars %}
+    <tr>
+      <td>{{car['vehicle_brand']}}</td>
+      <td>{{car['vehicle_model']}}</td>
+      <td>{{car['vehicle_condition']}}</td>
+      <td>{{car['vehicle_passenger']}}</td>
+      <td>{{car['vehicle_milage']}}</td>
+      <td>{{car['vehicle_color']}}</td>
+      <td>{{car['vehicle_gear_type']}}</td>
+      <td><button type="button" class="btn btn-info" id="">Info</button></td>
+    </tr>
+  </tbody>
+  {% endfor %}
+          {% else %}
+              <div class="displya-3">No Cars</div>
+          {% endif %}
+<table/>
+{% endblock %}
+
+
+<!-- Row 1 - fadeIn -->
+<!-- Row 2 - fadeOut -->
