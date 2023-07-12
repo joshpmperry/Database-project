@@ -83,22 +83,28 @@ def truck():
 def test():
     return render_template('test.html')
 
-@app.route('/payment/', methods=['GET', 'POST'])
-def payment():
+@app.route('/register/', methods=['GET', 'POST'])
+def register():
     if request.method == 'GET':
-        return render_template('paymentpage.html')
+        return render_template('register.html')
     elif request.method == 'POST':
         userDetails = request.form
+        
+        if userDetails['password'] != userDetails['confirm_password']:
+            flash('Passwords do not match!', 'danger')
+            return render_template('register.html')
         
         p1 = userDetails['customer_firstname']
         p2 = userDetails['customer_lastname']
         p3 = userDetails['customer_dob']
+        p4 = userDetails['customer_passwords']
         p5 = userDetails['customer_gender']
         p6 = userDetails['customer_email']
         p7 = userDetails['customer_phone_number']
         p8 = userDetails['customer_address']
         p9 = userDetails['customer_identification_number']
         p10 = userDetails['customer_passport']
+        
         
         q1 = userDetails['customer_payment_type']
         q2 = userDetails['customer_payment_card_number']
@@ -116,7 +122,7 @@ def payment():
         mysql.connection.commit()
         flash("Form Submitted Successfully.", "success")
         return redirect('/')    
-    return render_template('paymentpage.html')
+    return render_template('register.html')
 
 @app.route('/login/', methods=['GET', 'POST'])
 def login():
@@ -151,7 +157,7 @@ def login():
             return render_template('login.html')
         cur.close()
         return redirect('/')
-    return render_template('paymentpage.html')
+    return render_template('register.html')
 
 @app.route('/my-blogs/')
 def my_blogs():
