@@ -97,7 +97,7 @@ def register():
         p1 = userDetails['customer_firstname']
         p2 = userDetails['customer_lastname']
         p3 = userDetails['customer_dob']
-        p4 = userDetails['customer_passwords']
+        p4 = userDetails['customer_password']
         p5 = userDetails['customer_gender']
         p6 = userDetails['customer_email']
         p7 = userDetails['customer_phone_number']
