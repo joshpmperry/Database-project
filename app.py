@@ -41,7 +41,7 @@ def reservation():
 @app.route('/car/')
 def car():
     cur = mysql.connection.cursor()
-    resultValue =  cur.execute("SELECT * FROM vehicle")
+    resultValue =  cur.execute("SELECT * FROM vehicle WHERE vehicle_type = 'sedan'")
     print(resultValue)
     if resultValue > 0:
         vehicle = cur.fetchall()
