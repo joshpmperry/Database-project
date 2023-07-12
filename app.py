@@ -111,10 +111,11 @@ def register():
         q3 = userDetails['customer_payment_card_cvc']
         q4 = userDetails['customer_payment_card_expiry_date']
 
+        hashed_pw = generate_password_hash(p4)    
         queryStatement = (
             f"INSERT INTO "
-            f"customer(customer_firstname,customer_lastname, customer_dob, customer_gender, customer_email, customer_phone_number, customer_address, customer_identification_number, customer_passport, customer_payment_type, customer_payment_card_number, customer_payment_card_cvc, customer_payment_card_expiry_date) "
-            f"VALUES('{p1}', '{p2}', '{p3}','{p5}','{p6}','{p7}','{p8}','{p9}','{p10}','{q1}', '{q2}', '{q3}', '{q4}')"
+            f"customer(customer_firstname,customer_lastname, customer_dob, customer_password, customer_gender, customer_email, customer_phone_number, customer_address, customer_identification_number, customer_passport, customer_payment_type, customer_payment_card_number, customer_payment_card_cvc, customer_payment_card_expiry_date) "
+            f"VALUES('{p1}', '{p2}', '{p3}','{hashed_pw}','{p5}','{p6}','{p7}','{p8}','{p9}','{p10}','{q1}', '{q2}', '{q3}', '{q4}')"
         )
         print(queryStatement)
         cur = mysql.connection.cursor()
@@ -132,7 +133,7 @@ def login():
         loginForm = request.form
         username = loginForm['customer_email']
         cur = mysql.connection.cursor()
-        queryStatement = f"SELECT * FROM user WHERE username = '{username}'"
+        queryStatement = f"SELECT * FROM customer WHERE customer_email = '{username}'"
         numRow = cur.execute(queryStatement)
         if numRow > 0:
             user =  cur.fetchone()
@@ -140,11 +141,9 @@ def login():
 
                 # Record session information
                 session['login'] = True
-                session['username'] = user['username']
-                session['userroleid'] = str(user['role_id'])
-                session['firstName'] = user['first_name']
-                session['lastName'] = user['last_name']
-                print(session['username'] + " roleid: " + session['userroleid'])
+                session['customer_email'] = user['customer_email']
+                session['firstName'] = user['customer_firstname']
+                session['lastName'] = user['customer_lastname']
                 flash('Welcome ' + session['firstName'], 'success')
                 #flash("Log In successful",'success')
                 return redirect('/')
