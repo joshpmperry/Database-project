@@ -77,7 +77,7 @@ def payment():
         p1 = userDetails['customer_firstname']
         p2 = userDetails['customer_lastname']
         p3 = userDetails['customer_dob']
-        p4 = userDetails['customer_age']
+  
         p5 = userDetails['customer_gender']
         p6 = userDetails['customer_email']
         p7 = userDetails['customer_phone_number']
@@ -85,18 +85,18 @@ def payment():
         p9 = userDetails['customer_identification_number']
         p10 = userDetails['customer_passport']
         
-        q1 = userDetails['payment_type']
-        q2 = userDetails['payment_card_number']
-        q3 = userDetails['payment_card_cvc']
-        q4 = userDetails['payment_card_date']
+        q1 = userDetails['customer_payment_type']
+        q2 = userDetails['customer_payment_card_number']
+        q3 = userDetails['customer_payment_card_cvc']
+        q4 = userDetails['customer_payment_card_expiry_date']
         
-        print(p1 + "," + p2 + "," + p3 + "," + p4 + "," + p5 + "," + p6 + "," + p7 + "," + p8 + "," + p9 + "," + p10)
+        print(p1 + "," + p2 + "," + p3 + ","  + "," + p5 + "," + p6 + "," + p7 + "," + p8 + "," + p9 + "," + p10)
         print(q1 + "," + q2 + "," + q3 + "," + q4)
         
         queryStatement = (
             f"INSERT INTO "
-            f"customer(customer_firstname,customer_lastname, customer_dob, customer_age, customer_gender, customer_email, customer_phone_number, customer_address, customer_identification_number, customer_passport, payment_type, payment_card_number, payment_card_cvc, payment_card_date) "
-            f"VALUES('{p1}', '{p2}', '{p3}', '{p4}','{p5}','{p6}','{p7}','{p8}','{p9}','{p10}','{q1}', '{q2}', '{q3}', '{q4}')"
+            f"customer(customer_firstname,customer_lastname, customer_dob, customer_gender, customer_email, customer_phone_number, customer_address, customer_identification_number, customer_passport, customer_payment_type, customer_payment_card_number, customer_payment_card_cvc, customer_payment_card_expiry_date) "
+            f"VALUES('{p1}', '{p2}', '{p3}','{p5}','{p6}','{p7}','{p8}','{p9}','{p10}','{q1}', '{q2}', '{q3}', '{q4}')"
         )
         print(queryStatement)
         cur = mysql.connection.cursor()
