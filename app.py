@@ -115,6 +115,17 @@ def phuket():
     cur.close()
     return render_template('car.html', cars=None)
 
+@app.route('/maintenance/')
+def maintenance():
+    vehicle_id = request.args.get('vehicle_ID')  # Access the URL parameter
+
+    cur = mysql.connection.cursor()
+    query = "SELECT * FROM vehicle_maintenance_history WHERE vehicle_ID = %s"
+    cur.execute(query, (vehicle_id,))
+    vehicle = cur.fetchall()
+    cur.close()
+
+    return render_template('maintenance.html', cars=vehicle)
 
 @app.route('/test/')
 def test():

@@ -89,6 +89,9 @@ table td.r, table th.r {
   table tbody tr td:nth-child(6):before {
     content: "Reservations";
   }
+  table tbody tr td:nth-child(7):before {
+    content: "Maintenance";
+  }
 }
 body {
   background: #4d4d4d;

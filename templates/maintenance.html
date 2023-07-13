@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<link rel="stylesheet" href='/static/maintenance.css' />
+<link rel="stylesheet" href='/static/nav.css' />
+<h1>Maintenance History</h1>
+
+<table>
+  <thead><tr>
+      <th>Type</th>
+      <th>Date</th>
+
+    </tr><thead>
+  <tbody>
+    {% if cars %}
+      {% for car in cars %}
+    <tr>
+      <td>{{car['maintenance_type']}}</td>
+      <td>{{car['maintenance_datetime']}}</td>q
+    </tr>
+  </tbody>
+  {% endfor %}
+          {% else %}
+              <div class="displya-3">No Cars</div>
+          {% endif %}
+<table/>
+{% endblock %}
+
+
+<!-- Row 1 - fadeIn -->
+<!-- Row 2 - fadeOut -->    
