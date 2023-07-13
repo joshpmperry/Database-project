@@ -61,6 +61,34 @@ def maintenance(id):
 def vehicle():
     return render_template('vehicle.html')
 
+@app.route('/appointment/', methods=['GET', 'POST'])
+def appointment():
+    location = []  # create an empty list
+    location.append("Suvarnabhumi")
+    location.append("Chiang Mai")
+    location.append("Phuket")
+
+    if request.method == 'GET':
+        return render_template('appointment.html')
+    elif request.method == 'POST':
+        userDetails = request.form
+        
+        p1 = userDetails['appointment_date']
+        p2 = userDetails['appointment_time']
+        p3 = userDetails['appointment_request']
+         
+        queryStatement = (
+            f"INSERT INTO "
+            f"customer(admin_ID, location_ID, appointment_date, appointment_time, appointment_request) "
+            f"VALUES('{1}', '{1}', '{p1}', '{p2}', '{p3}')"
+        )
+        print(queryStatement)
+        cur = mysql.connection.cursor()
+        cur.execute(queryStatement)
+        mysql.connection.commit()
+        flash("Form Submitted Successfully.", "success")
+        return redirect('/')    
+    return render_template('appointment.html')
 
 @app.route('/sedan/')
 def sedan():
