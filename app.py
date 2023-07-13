@@ -70,7 +70,7 @@ def suv():
 @app.route('/truck/')
 def truck():
     cur = mysql.connection.cursor()
-    resultValue =  cur.execute("SELECT * FROM vehicle where vehicle_type = 'truck'")
+    resultValue =  cur.execute("SELECT * FROM vehicle where vehicle_type = 'suv'")
     print(resultValue)
     if resultValue > 0:
         vehicle = cur.fetchall()
@@ -78,6 +78,43 @@ def truck():
         return render_template('car.html', cars=vehicle)
     cur.close()
     return render_template('car.html', cars=None)
+
+@app.route('/suvarnhabumi/')
+def suvarnhabumi():
+    cur = mysql.connection.cursor()
+    resultValue =  cur.execute("SELECT * FROM vehicle where location_ID = 1")
+    print(resultValue)
+    if resultValue > 0:
+        vehicle = cur.fetchall()
+        cur.close()
+        return render_template('car.html', cars=vehicle)
+    cur.close()
+    return render_template('car.html', cars=None)
+
+@app.route('/chiangmai/')
+def chiangmai():
+    cur = mysql.connection.cursor()
+    resultValue =  cur.execute("SELECT * FROM vehicle where location_ID = 2")
+    print(resultValue)
+    if resultValue > 0:
+        vehicle = cur.fetchall()
+        cur.close()
+        return render_template('car.html', cars=vehicle)
+    cur.close()
+    return render_template('car.html', cars=None)
+
+@app.route('/phuket/')
+def phuket():
+    cur = mysql.connection.cursor()
+    resultValue =  cur.execute("SELECT * FROM vehicle where location_ID = 3")
+    print(resultValue)
+    if resultValue > 0:
+        vehicle = cur.fetchall()
+        cur.close()
+        return render_template('car.html', cars=vehicle)
+    cur.close()
+    return render_template('car.html', cars=None)
+
 
 @app.route('/test/')
 def test():
@@ -163,7 +200,6 @@ def logout():
     session.clear()
     flash("You have been logged out", 'info')
     return redirect('/')
-
 
 @app.route('/my-blogs/')
 def my_blogs():
