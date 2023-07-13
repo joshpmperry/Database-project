@@ -1,4 +1,9 @@
 mysql_host : 'localhost'
 mysql_user : 'root'
+<<<<<<< HEAD
 mysql_password : 'iccsdbroot'
 mysql_db : 'car_rental_db'
+=======
+mysql_password : 'Wimpykid2013'
+mysql_db : 'database project'
+>>>>>>> bcb50aab37b8410d114c5c535abd81f8bb3d0d17
