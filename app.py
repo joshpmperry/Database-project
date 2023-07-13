@@ -204,7 +204,7 @@ def login():
                 session['gender'] = user['customer_gender']
                 session['Phone_number'] = user['customer_phone_number']
                 session['address'] = user['customer_address']
-                session['ID'] = user['customer_ID']
+                session['id'] = user['customer_ID']
                 flash('Welcome ' + session['firstName'], 'success')
                 #flash("Log In successful",'success')
                 return redirect('/')
@@ -227,16 +227,14 @@ def logout():
 
 @app.route('/profile/')
 def profile():
-    customer_id = session['ID']
-
-    cur = mysql.connection.cursor()
-    query = f"SELECT * FROM appointment WHERE customer_ID = '{customer_id}'"
-    cur.execute(query)
-    appointments = cur.fetchall()
-    cur.close()
-
-    
-
+    if session['login'] != True:
+        return redirect('/register')
+    else:
+        cur = mysql.connection.cursor()
+        query = f"SELECT * FROM appointment WHERE customer_ID = '{session['id']}'"
+        cur.execute(query)
+        appointments = cur.fetchall()
+        cur.close()
     return render_template('profile.html', appointments=appointments, )
 
 @app.route('/my-blogs/')
