@@ -19,6 +19,7 @@ body{
 .container .card{
     position: relative;
     cursor: pointer;
+    background: #333;
 }
 
 .container .card .face{
@@ -29,7 +30,7 @@ body{
 
 .container .card .face.face1{
     position: relative;
-    background: #333;
+    background: #262626;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,7 +44,7 @@ body{
 }
 
 .container .card .face.face1 .content{
-    opacity: 0.2;
+    opacity: 1;
     transition: 0.5s;
 }
 
@@ -93,12 +94,12 @@ body{
     display:  inline-block;
     text-decoration: none;
     font-weight: 900;
-    color: #333;
+    color: #262626;
     padding: 5px;
-    border: 1px solid #333;
+    border: 1px solid #262626;
 }
 
 .container .card .face.face2 .content a:hover{
-    background: #333;
+    background: #262626;
     color: #fff;
 }
