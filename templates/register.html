@@ -32,11 +32,11 @@
             <div class="input-icon"><i class="fa fa-user"></i></div>
           </div>
           <div class="input-group input-group-icon">
-            <input type="text" placeholder="Phone number" id="customer_phone_number" name="customer_phone_number"/>
+            <input type="text" placeholder="Phone number" id="customer_phone_number" name="customer_phone_number" pattern="[0-9]{10}"/>
             <div class="input-icon"><i class="fa fa-credit-card"></i></div>
           </div>
           <div class="input-group input-group-icon">
-            <input type="text" placeholder="Identification Number" id="customer_identification_number" name="customer_identification_number"/>
+            <input type="text" placeholder="Identification Number" id="customer_identification_number" name="customer_identification_number" pattern="[0-9]{13}/">
             <div class="input-icon"><i class="fa fa-key"></i></div>
           </div>
           <div class="input-group input-group-icon">
@@ -73,17 +73,17 @@
         <h4>Payment Details</h4>
         <div class="input-group">
           <input id="customer_payment_type" type="radio" name="customer_payment_type" value="1" checked="true"/>
-          <label for="customer_payment_type"><span><i class="fa fa-cc-visa"></i>Credit Card</span></label>
+          <label for="customer_payment_type"><span><i class="fa fa-cc-visa" ></i>Credit Card</span></label>
           <input id="customer_payment_type" type="radio" name="customer_payment_type" value="2" />
           <label for="customer_payment_type"> <span><i class="fa fa-cc-paypal"></i>Paypal</span></label>
         </div>
         <div class="input-group input-group-icon">
-          <input type="text" placeholder="Card Number" id="customer_payment_card_number" name="customer_payment_card_number"/>
+          <input type="text" placeholder="Card Number" id="customer_payment_card_number" name="customer_payment_card_number" pattern="[0-9]{13}"/>
           <div class="input-icon"><i class="fa fa-credit-card"></i></div>
         </div>
         <div class="col-half">
           <div class="input-group input-group-icon">
-            <input type="text" placeholder="Card CVC" id="customer_payment_card_cvc" name="customer_payment_card_cvc"/>
+            <input type="text" placeholder="Card CVC" id="customer_payment_card_cvc" pattern="[0-9]{3}" name="customer_payment_card_cvc"/>
             <div class="input-icon"><i class="fa fa-user"></i></div>
           </div>
         </div>

@@ -211,7 +211,7 @@ def register():
         cur.execute(queryStatement)
         mysql.connection.commit()
         flash("Form Submitted Successfully.", "success")
-        return redirect('/')    
+        return redirect('/login/')    
     return render_template('register.html')
 
 @app.route('/login/', methods=['GET', 'POST'])
@@ -260,6 +260,12 @@ def logout():
 
 @app.route('/profile/')
 def profile():
+    try:
+        user = session['login']
+    except:
+        flash('Please sign in first', 'danger')
+        return redirect('/login')
+    
     if session['login'] != True:
         return redirect('/register')
     else:
