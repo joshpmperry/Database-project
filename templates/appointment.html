@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<link rel="stylesheet" href='/static/appointment.css' />
+
+<body>
+    <h1>Appointment</h1>
+
+    <div class="container">
+        <form method="POST">
+            <p>Make an appointment with us to see available cars in person.</p>
+            
+            <div class="form">
+                <div class="appointment">
+                    
+                    <div class="row">
+                        <h4>Date</h4>
+                        <div class="input-group input-group-icon">
+                            <input type="date" id="appointment_date" name="appointment_date" min="2015-01-01" max="2027-12-31"/>
+                            <div class="input-icon"><i class="fa fa-user"></i></div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <h4>Time</h4>
+                        <div class="input-group input-group-icon">
+                            <input type="time" id="appointment_time" name="appointment_time"/>
+                            <div class="input-icon"><i class="fa fa-user"></i></div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <h4>Request</h4>
+                        <div class="input-group input-group-icon">
+                            <input type="text" placeholder="Request" id="appointment_request" name="appointment_request"/>
+                            <div class="input-icon"><i class="fa fa-user"></i></div>
+                        </div>
+                    </div>
+                    
+                    <div class="submit-button">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+
+
+
+{% endblock %}
