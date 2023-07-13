@@ -199,9 +199,14 @@ def login():
 
                 # Record session information
                 session['login'] = True
-                session['customer_email'] = user['customer_email']
+                session['email'] = user['customer_email']
                 session['firstName'] = user['customer_firstname']
                 session['lastName'] = user['customer_lastname']
+                session['dob'] = user['customer_dob']
+                session['gender'] = user['customer_gender']
+                session['Phone_number'] = user['customer_phone_number']
+                session['address'] = user['customer_address']
+                session['ID'] = user['customer_ID']
                 flash('Welcome ' + session['firstName'], 'success')
                 #flash("Log In successful",'success')
                 return redirect('/')
@@ -221,6 +226,20 @@ def logout():
     session.clear()
     flash("You have been logged out", 'info')
     return redirect('/')
+
+@app.route('/profile/')
+def profile():
+    customer_id = session['ID']
+
+    cur = mysql.connection.cursor()
+    query = "SELECT * FROM appointment WHERE customer_ID = '{customer_id}'"
+    cur.execute(query)
+    appointments = cur.fetchall()
+    cur.close()
+
+    
+
+    return render_template('profile.html', appointments=appointments, )
 
 @app.route('/my-blogs/')
 def my_blogs():
