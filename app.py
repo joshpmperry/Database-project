@@ -63,31 +63,36 @@ def vehicle():
 
 @app.route('/appointment/', methods=['GET', 'POST'])
 def appointment():
-    location = []  # create an empty list
-    location.append("Suvarnabhumi")
-    location.append("Chiang Mai")
-    location.append("Phuket")
-
     if request.method == 'GET':
-        return render_template('appointment.html')
-    elif request.method == 'POST':
-        userDetails = request.form
-        
-        p1 = userDetails['appointment_date']
-        p2 = userDetails['appointment_time']
-        p3 = userDetails['appointment_request']
-         
-        queryStatement = (
-            f"INSERT INTO "
-            f"customer(admin_ID, location_ID, appointment_date, appointment_time, appointment_request) "
-            f"VALUES('{1}', '{1}', '{p1}', '{p2}', '{p3}')"
-        )
-        print(queryStatement)
         cur = mysql.connection.cursor()
-        cur.execute(queryStatement)
-        mysql.connection.commit()
-        flash("Form Submitted Successfully.", "success")
-        return redirect('/')    
+        resultValue =  cur.execute("SELECT * FROM location")
+        print(resultValue)
+        if resultValue > 0:
+            locations = cur.fetchall()
+            cur.close()
+            return render_template('appointment.html', locations=locations)
+    elif request.method == 'POST':
+        formDetail = request.form
+        if session['login'] != True:
+            return redirect('/login')
+        else:
+            l1 = session['id']
+            l2 = formDetail['location_ID']
+            l3 = formDetail['appointment_date']
+            l4 = formDetail['appointment_time']
+            l5 = formDetail['appointment_request']
+            
+            queryStatement = (
+                f"INSERT INTO "
+                f"appointment(customer_ID, location_ID, appointment_date, appointment_time, appointment_request)"
+                f"VALUES('{l1}', '{l2}', '{l3}', '{l4}', '{l5}')"
+            )
+            cur = mysql.connection.cursor()
+            cur.execute(queryStatement)
+            mysql.connection.commit()
+            flash("Form Submitted Successfully.", "success")
+            cur.close()
+            return render_template("index.html")
     return render_template('appointment.html')
 
 @app.route('/sedan/')
@@ -163,7 +168,7 @@ def phuket():
     return render_template('car.html', cars=None)
 
 
-@app.route('/test/')
+@app.route('/test/', methods=['GET', 'POST'])
 def test():
     return render_template('test.html')
 

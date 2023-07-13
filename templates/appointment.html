@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<link rel="stylesheet" href='/static/appointment.css' />
 
+<link rel="stylesheet" href='/static/nav.css' />
+<link rel="stylesheet" href='/static/appointment.css' />
 <body>
     <h1>Appointment</h1>
 
@@ -14,78 +15,40 @@
             <div class="field">
                 <label for="id1">Location</label>
                 <div class="input-field">
-                    <select id-="id1" name="appt_location">
-                        <option value="SUVARNABHUMI">Suvarnabhumi</option>
-                        <option value="CHIANGMAI">Chiang Mai</option>
-                        <option value="PHUKET">Phuket</option>
+                    <select id="location_ID" name="location_ID">
+                        {% if locations %}
+                            {% for local in locations %}
+                        <option value="{{local['location_ID']}}">{{local['location_name']}}</option>
+                            {% endfor %}
+                        {% else %}
+                        {% endif %}
                     </select>
                 </div>
             </div>
 
             <div class="field">
-                <label for="id2">Date</label>
+                <label for="id2">Appointment Date</label>
                 <div class="input-field">
-                    <input type="date" id="id2" name="appt_date"></input>
+                    <input type="date" id="appointment_date" name="appointment_date"></input>
                 </div>
             </div>
 
             <div class="field">
                 <label for="id3">Time</label>
                 <div class="input-field">
-                    <input type="time" id="id3" name="appt_time"></input>
+                    <input type="time" id="appointment_time" name="appointment_time"></input>
                 </div>
             </div>
 
             <div class="row">
                 <label for="id4">Request</label>
                 <div class="input-field">
-                    <textarea type="text" id="id4" name="appt_request" rows="4" cols="50"></textarea>
+                    <textarea type="text" id="appointment_request" name="appointment_request" rows="4" cols="50"></textarea>
                 </div>
             </div>
             
             <button type="Submit">Submit</button>
-
-
-            <!-- <div class="form">
-                <div class="appointment">
-
-                    
-                    
-                    <div class="row">
-                        <h4>Date</h4>
-                        <div class="input-group input-group-icon">
-                            <input type="date" id="appointment_date" name="appointment_date" min="2015-01-01" max="2027-12-31"/>
-                            <div class="input-icon"><i class="fa fa-user"></i></div>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <h4>Time</h4>
-                        <div class="input-group input-group-icon">
-                            <input type="time" id="appointment_time" name="appointment_time"/>
-                            <div class="input-icon"><i class="fa fa-user"></i></div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <h4>Request</h4>
-                        <div class="input-group input-group-icon">
-                            <input type="text" placeholder="Request" id="appointment_request" name="appointment_request"/>
-                            <div class="input-icon"><i class="fa fa-user"></i></div>
-                        </div>
-                    </div>
-                    
-                    <div class="submit-button">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-
-                </div>
-            </div> -->
         </form>
     </div>
 </body>
-
-
-
-
 {% endblock %}
