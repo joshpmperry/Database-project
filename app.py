@@ -70,7 +70,7 @@ def suv():
 @app.route('/truck/')
 def truck():
     cur = mysql.connection.cursor()
-    resultValue =  cur.execute("SELECT * FROM vehicle where vehicle_type = 'suv'")
+    resultValue =  cur.execute("SELECT * FROM vehicle where vehicle_type = 'truck'")
     print(resultValue)
     if resultValue > 0:
         vehicle = cur.fetchall()
