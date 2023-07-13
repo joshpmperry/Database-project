@@ -20,7 +20,7 @@
       <th>Insurance Expiry Date</th>
       <th>Gear Type</th>
       <th>Price/Day</th>
-      <th>Maintenance</tr>th>
+      <th>Maintenance</th>
 
     </tr><thead>
   <tbody>
@@ -40,12 +40,16 @@
       <td>{{car['vehicle_insurance_expiry']}}</td>
       <td>{{car['vehicle_gear_type']}}</td>
       <td>{{car['vehicle_price_per_day']}}</td>
-      <td><a href="/maintenance/?vehicle_ID={{ car['vehicle_ID'] }}" type="button" class="btn btn-info" id="">History</a></td>
+      <td><a href="/maintenance/{{ car['vehicle_ID'] }}" type="button" class="btn btn-info" id="">History</a></td>
     </tr>
   </tbody>
   {% endfor %}
           {% else %}
-              <div class="displya-3">No Cars</div>
+          <tbody>
+            <tr>
+              <td>There is nothing here</td>
+            </tr>
+          </tbody>
           {% endif %}
 <table/>
 

@@ -35,17 +35,27 @@ def about():
 def location():
     return render_template('location.html')
 
-@app.route('/reservation/')
-def reservation():
-    vehicle_id = request.args.get('vehicle_ID')  # Access the URL parameter
-
+@app.route('/reservation/<int:id>')
+def reservation(id):
     cur = mysql.connection.cursor()
-    query = "SELECT * FROM vehicle WHERE vehicle_ID = %s"
-    cur.execute(query, (vehicle_id,))
+    query = f"SELECT * FROM vehicle WHERE vehicle_ID = '{id}'"
+    cur.execute(query)
     vehicle = cur.fetchall()
     cur.close()
 
     return render_template('reservation.html', cars=vehicle)
+
+@app.route('/maintenance/<int:id>')
+def maintenance(id):
+    vehicle_id = request.args.get('vehicle_ID')  # Access the URL parameter
+
+    cur = mysql.connection.cursor()
+    query = "SELECT * FROM vehicle_maintenance_history WHERE vehicle_ID = %s"
+    cur.execute(query, (vehicle_id,))
+    vehicle = cur.fetchall()
+    cur.close()
+
+    return render_template('maintenance.html', cars=vehicle)
 
 @app.route('/vehicle/')
 def vehicle():
@@ -123,18 +133,6 @@ def phuket():
         return render_template('car.html', cars=vehicle)
     cur.close()
     return render_template('car.html', cars=None)
-
-@app.route('/maintenance/')
-def maintenance():
-    vehicle_id = request.args.get('vehicle_ID')  # Access the URL parameter
-
-    cur = mysql.connection.cursor()
-    query = "SELECT * FROM vehicle_maintenance_history WHERE vehicle_ID = %s"
-    cur.execute(query, (vehicle_id,))
-    vehicle = cur.fetchall()
-    cur.close()
-
-    return render_template('maintenance.html', cars=vehicle)
 
 
 @app.route('/test/')
@@ -232,7 +230,7 @@ def profile():
     customer_id = session['ID']
 
     cur = mysql.connection.cursor()
-    query = "SELECT * FROM appointment WHERE customer_ID = '{customer_id}'"
+    query = f"SELECT * FROM appointment WHERE customer_ID = '{customer_id}'"
     cur.execute(query)
     appointments = cur.fetchall()
     cur.close()
