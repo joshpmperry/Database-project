@@ -9,9 +9,47 @@
     <div class="container">
         <form method="POST">
             <p>Make an appointment with us to see available cars in person.</p>
+        
             
-            <div class="form">
+            <div class="field">
+                <label for="id1">Location</label>
+                <div class="input-field">
+                    <select id-="id1" name="appt_location">
+                        <option value="SUVARNABHUMI">Suvarnabhumi</option>
+                        <option value="CHIANGMAI">Chiang Mai</option>
+                        <option value="PHUKET">Phuket</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="id2">Date</label>
+                <div class="input-field">
+                    <input type="date" id="id2" name="appt_date"></input>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="id3">Time</label>
+                <div class="input-field">
+                    <input type="time" id="id3" name="appt_time"></input>
+                </div>
+            </div>
+
+            <div class="row">
+                <label for="id4">Request</label>
+                <div class="input-field">
+                    <textarea type="text" id="id4" name="appt_request" rows="4" cols="50"></textarea>
+                </div>
+            </div>
+            
+            <button type="Submit">Submit</button>
+
+
+            <!-- <div class="form">
                 <div class="appointment">
+
+                    
                     
                     <div class="row">
                         <h4>Date</h4>
@@ -42,7 +80,7 @@
                     </div>
 
                 </div>
-            </div>
+            </div> -->
         </form>
     </div>
 </body>
