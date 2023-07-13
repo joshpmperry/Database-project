@@ -1,4 +1,4 @@
 mysql_host : 'localhost'
 mysql_user : 'root'
-mysql_password : 'j$GE45P#DItA=!2ruf#r'
-mysql_db : 'blogdb'
+mysql_password : 'iccsdbroot'
+mysql_db : 'car_rental_db'
