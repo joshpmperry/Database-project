@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<link rel="stylesheet" href='/static/adminhome.css' />
+<body>
+    <h1>Admin Homepage</h1>
+    <div class="container">
+        <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <img src="https://cdn-icons-png.flaticon.com/128/3085/3085411.png">
+                    <h3>VEHICLES</h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div class="content">
+                    <p>Update vehicles information</p>
+                        <a href="{{ url_for('admin_vehicle') }}">Update</a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <img src="https://cdn-icons-png.flaticon.com/128/2377/2377874.png">
+                    <h3>LOCATIONS</h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div class="content">
+                    <p>See all our available locations nearest and convenient to you.</p>
+                        <a href="{{ url_for('location') }}">Read More</a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <img src="https://cdn-icons-png.flaticon.com/128/2460/2460877.png">
+                    <h3>RESERVATIONS</h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div class="content">
+                    <p>Reserve your ride here.</p>
+                        <a href="{{ url_for('reservation') }}">Read More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}

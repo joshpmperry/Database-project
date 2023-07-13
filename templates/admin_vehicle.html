@@ -8,6 +8,7 @@
 <table>
   <thead><tr>
       <th>ID</th>
+      <th>Type</th>
       <th>Brand</th>
       <th>Model</th>
       <th>Condition</th>
@@ -15,17 +16,15 @@
       <th>Milage</th>
       <th>Color</th>
       <th>Gear Type</th>
-      <th>Price</th>
       <th>Reservations</th>
       <th>Maintenance</tr>th>
-
-
     </tr><thead>
   <tbody>
     {% if cars %}
       {% for car in cars %}
     <tr>
       <td>{{car['vehicle_ID']}}</td>
+      <td>{{car['vehicle_type']}}</td>
       <td>{{car['vehicle_brand']}}</td>
       <td>{{car['vehicle_model']}}</td>
       <td>{{car['vehicle_condition']}}</td>
@@ -33,7 +32,6 @@
       <td>{{car['vehicle_milage']}}</td>
       <td>{{car['vehicle_color']}}</td>
       <td>{{car['vehicle_gear_type']}}</td>
-      <td>{{car['vehicle_price_per_day']}}</td>
       <td><button type="button" class="btn btn-info" id="">Info</button></td>
       <td><a href="/maintenance/?vehicle_ID={{ car['vehicle_ID'] }}" type="button" class="btn btn-info" id="">History</a></td>
     </tr>

@@ -26,6 +26,7 @@ def index():
     cur.close()
     return render_template('index.html', blogs=None)
 
+
 @app.route('/about/')
 def about():
     return render_template('about.html')
@@ -229,6 +230,33 @@ def my_blogs():
         return render_template('my-blogs.html', my_blogs=my_blogs)
     else:
         return render_template('my-blogs.html',my_blogs=None)
+
+
+@app.route('/adminhome/')
+def adminhome():
+    cur = mysql.connection.cursor()
+    resultValue =  cur.execute("SELECT * FROM vehicle")
+    print(resultValue)
+    if resultValue > 0:
+        blogs = cur.fetchall()
+        cur.close()
+        return render_template('adminhome.html', blogs=blogs)
+    cur.close()
+    return render_template('adminhome.html', blogs=None)
+
+
+@app.route('/admin_vehicle/')
+def admin_vehicle():
+    cur = mysql.connection.cursor()
+    resultValue =  cur.execute("SELECT * FROM vehicle")
+    print(resultValue)
+    if resultValue > 0:
+        vehicle = cur.fetchall()
+        cur.close()
+        return render_template('car.html', cars=vehicle)
+    cur.close()
+    return render_template('car.html', cars=None)
+
 
 if __name__ == '__main__':
     app.run(
