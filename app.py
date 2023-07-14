@@ -276,24 +276,6 @@ def profile():
         cur.close()
     return render_template('profile.html', appointments=appointments, )
 
-@app.route('/my-blogs/')
-def my_blogs():
-    try:
-        username = session['username']
-    except:
-        flash('Please sign in first', 'danger')
-        return redirect('/login')
-
-    cur = mysql.connection.cursor()
-    queryStatement = f"SELECT * FROM blog WHERE username = '{username}'"
-    print(queryStatement)
-    result_value = cur.execute(queryStatement) 
-    if result_value > 0:
-        my_blogs = cur.fetchall()
-        return render_template('my-blogs.html', my_blogs=my_blogs)
-    else:
-        return render_template('my-blogs.html',my_blogs=None)
-
 
 @app.route('/adminhome/')
 def adminhome():
@@ -351,12 +333,36 @@ def edit_customer(id):
 
         # Extract form data
         customer_firstname = form_details['customer_firstname']
+        customer_lastname = form_details['customer_lastname']
+        customer_dob = form_details['customer_dob']
+        customer_gender = form_details['customer_gender']
+        customer_email = form_details['customer_email']
+        customer_phone_number = form_details['customer_phone_number']
+        customer_address = form_details['customer_address']
+        customer_identification_number = form_details['customer_identification_number']
+        customer_passport = form_details['customer_passport']
+        customer_payment_type = form_details['customer_payment_type']
+        customer_payment_card_number = form_details['customer_payment_card_number']
+        customer_payment_card_cvc = form_details['customer_payment_card_cvc']
+        customer_payment_card_exp = form_details['customer_payment_card_expiry_date']
+        customer_password = form_details['customer_password']
+        
         # Extract other customer details...
 
         # Update the customer details in the database
         cur = mysql.connection.cursor()
-        query = "UPDATE customer SET customer_firstname = %s, ... WHERE customer_ID = %s"
-        cur.execute(query, (customer_firstname, ..., id))
+        query = (
+                f"UPDATE customer SET customer_firstname = '{customer_firstname}', customer_lastname = '{customer_lastname}',"
+                f"    customer_dob = '{customer_dob}', customer_gender = '{customer_gender}', customer_email = '{customer_email}',"
+                f"    customer_phone_number = '{customer_phone_number}', customer_address = '{customer_address}',"
+                f"    customer_identification_number = '{customer_identification_number}', customer_passport = '{customer_passport}',"
+                f"    customer_payment_type = '{customer_payment_type}', customer_payment_card_number = '{customer_payment_card_number}',"
+                f"    customer_payment_card_cvc = '{customer_payment_card_cvc}', customer_payment_card_expiry_date = '{customer_payment_card_exp}',"
+                f"    customer_password = '{customer_password}'"
+                f"    WHERE customer_ID = {customer['customer_ID']};"
+                )
+        
+        cur.execute(query)
         mysql.connection.commit()
         cur.close()
 
