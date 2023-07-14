@@ -221,36 +221,65 @@ def login():
         return render_template('login.html')
     elif request.method == 'POST':
         loginForm = request.form
-        username = loginForm['customer_email']
-        cur = mysql.connection.cursor()
-        queryStatement = f"SELECT * FROM customer WHERE customer_email = '{username}'"
-        numRow = cur.execute(queryStatement)
-        if numRow > 0:
-            user =  cur.fetchone()
-            if check_password_hash(user['customer_password'], loginForm['customer_password']):
+        user = loginForm['customer_email']
+        if ("@admin.co.th" in user):
+            cur = mysql.connection.cursor()
+            queryStatement = f"SELECT * FROM admin WHERE admin_email = '{user}'"
+            numRow = cur.execute(queryStatement)
+            if numRow > 0:
+                user =  cur.fetchone()
+                if check_password_hash(user['admin_password'], loginForm['customer_password']):
 
                 # Record session information
-                session['login'] = True
-                session['email'] = user['customer_email']
-                session['firstName'] = user['customer_firstname']
-                session['lastName'] = user['customer_lastname']
-                session['dob'] = user['customer_dob']
-                session['gender'] = user['customer_gender']
-                session['Phone_number'] = user['customer_phone_number']
-                session['address'] = user['customer_address']
-                session['id'] = user['customer_ID']
-                flash('Welcome ' + session['firstName'], 'success')
+                    session['login'] = True
+                    session['email'] = user['admin_email']
+                    session['firstName'] = user['admin_firstname']
+                    session['lastName'] = user['admin_lastname']
+                    session['dob'] = user['admin_dob']
+                    session['gender'] = user['admin_gender']
+                    session['Phone_number'] = user['admin_phonenumber']
+                    session['address'] = user['admin_address']
+                    session['id'] = user['admin_ID']
+                    flash('Welcome ' + session['firstName'], 'success')
                 #flash("Log In successful",'success')
-                return redirect('/')
+                    return render_template('adminSide/adminIndex.html')
+                else:
+                    cur.close()
+                flash("Password doesn't not match", 'danger')
             else:
                 cur.close()
-                flash("Password doesn't not match", 'danger')
+                flash('User not found', 'danger')
+                return render_template('login.html')
         else:
+            cur = mysql.connection.cursor()
+            queryStatement = f"SELECT * FROM customer WHERE customer_email = '{user}'"
+            numRow = cur.execute(queryStatement)
+            if numRow > 0:
+                user =  cur.fetchone()
+                if check_password_hash(user['customer_password'], loginForm['customer_password']):
+
+                    # Record session information
+                    session['login'] = True
+                    session['email'] = user['customer_email']
+                    session['firstName'] = user['customer_firstname']
+                    session['lastName'] = user['customer_lastname']
+                    session['dob'] = user['customer_dob']
+                    session['gender'] = user['customer_gender']
+                    session['Phone_number'] = user['customer_phone_number']
+                    session['address'] = user['customer_address']
+                    session['id'] = user['customer_ID']
+                    flash('Welcome ' + session['firstName'], 'success')
+                    #flash("Log In successful",'success')
+                    return redirect('/')
+                else:
+                    cur.close()
+                    flash("Password doesn't not match", 'danger')
+            else:
+                cur.close()
+                flash('User not found', 'danger')
+                return render_template('login.html')
             cur.close()
-            flash('User not found', 'danger')
-            return render_template('login.html')
-        cur.close()
-        return redirect('/')
+            return redirect('/')
     return render_template('register.html')
 
 @app.route('/logout')
@@ -320,11 +349,15 @@ def adminhome():
     # Retrieve data from vehicle_maintenance_history table
     cur.execute("SELECT * FROM vehicle_maintenance_history")
     maintenance_history = cur.fetchall()
+    
+    # Retrieve data from admin table
+    cur.execute("SELECT * FROM admin")
+    admin = cur.fetchall()
 
     cur.close()
     return render_template('adminSide/adminhome.html', customers=customers, vehicles=vehicles, locations=locations,
                            appointments=appointments, reviews=reviews, rentals=rentals, transactions=transactions,
-                           reports=reports, payments=payments, maintenance_history=maintenance_history)
+                           reports=reports, payments=payments, maintenance_history=maintenance_history, admin=admin)
 
 
 
@@ -406,7 +439,7 @@ def add_admin():
         flash("Admin added successfully.", "success")
         return redirect('/adminhome')
 
-    return render_template('adminside/add_admin.html')
+    return render_template('adminSide/add_admin.html')
 
 
 @app.route('/admin/add_location', methods=['GET', 'POST'])
@@ -1104,17 +1137,9 @@ def delete_customer(id):
     cur = mysql.connection.cursor()
 
     # Delete the customer
-    query = f"SET foreign_key_checks = 0"
-    cur.execute(query)
-    cur.nextset()  
 
     query = f"DELETE FROM customer WHERE customer_ID = {id}"
     cur.execute(query)
-    cur.nextset()  
-
-    query = f"SET foreign_key_checks = 1"
-    cur.execute(query)
-    cur.nextset()  
 
     mysql.connection.commit()
     cur.close()

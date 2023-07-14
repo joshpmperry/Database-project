@@ -1,41 +1,44 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block content %}
 <html>
-<head>
-    <title>Add Admin</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <h1>Add Admin</h1>
-    <form method="POST" action="/admin/add_admin">
-        <!-- Add input fields for admin details -->
-        <label for="admin_firstname">First Name:</label>
-        <input type="text" id="admin_firstname" name="admin_firstname" required>
-
-        <label for="admin_lastname">Last Name:</label>
-        <input type="text" id="admin_lastname" name="admin_lastname" required>
-
-        <label for="admin_dob">Date of Birth:</label>
-        <input type="date" id="admin_dob" name="admin_dob" required>
-
-        <label for="admin_gender">Gender:</label>
-        <input type="text" id="admin_gender" name="admin_gender">
-
-        <label for="admin_email">Email:</label>
-        <input type="email" id="admin_email" name="admin_email" required>
-
-        <label for="admin_phonenumber">Phone Number:</label>
-        <input type="text" id="admin_phonenumber" name="admin_phonenumber" required>
-
+    <head>
+        <title>Add Admin</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <h1>Add Admin</h1>
+        <form method="POST" action="/admin/add_admin">
+            <!-- Add input fields for admin details -->
+            <label for="admin_firstname">First Name:</label>
+            <input type="text" id="admin_firstname" name="admin_firstname" required>
+            
+            <label for="admin_lastname">Last Name:</label>
+            <input type="text" id="admin_lastname" name="admin_lastname" required>
+            
+            <label for="admin_dob">Date of Birth:</label>
+            <input type="date" id="admin_dob" name="admin_dob" required>
+            
+            <label for="admin_gender">Gender:</label>
+            <input type="text" id="admin_gender" name="admin_gender">
+            
+            <label for="admin_email">Email:</label>
+            <input type="email" id="admin_email" name="admin_email" required>
+            
+            <label for="admin_phonenumber">Phone Number:</label>
+            <input type="text" id="admin_phonenumber" name="admin_phonenumber" required>
+            
         <label for="admin_address">Address:</label>
         <input type="text" id="admin_address" name="admin_address">
-
+        
         <label for="admin_appointment_count">Appointment Count:</label>
         <input type="number" id="admin_appointment_count" name="admin_appointment_count" required>
-
+        
         <label for="admin_password">Password:</label>
         <input type="password" id="admin_password" name="admin_password" required>
-
+        
         <input type="submit" value="Add Admin">
     </form>
 </body>
 </html>
+
+{% endblock %}

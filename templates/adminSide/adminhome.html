@@ -1,9 +1,10 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block content %}
 <html>
-<head>
-    <title>Admin Home</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-</head>
+    <head>
+        <title>Admin Home</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    </head>
 <body>
     <h1>Welcome, Admin!</h1>
     <div class="table">
@@ -51,7 +52,7 @@
         </table>
         <a href="/admin/add_customer" class="add-button">Add Customer</a>
     </div>
-
+    
     <div class="table">
         <h2>Vehicles</h2>
         <table>
@@ -101,7 +102,7 @@
         </table>
         <a href="/admin/add_vehicle" class="add-button">Add Vehicle</a>
     </div>
-
+    
     <div class="table">
         <h2>Locations</h2>
         <table>
@@ -131,7 +132,7 @@
         </table>
         <a href="/admin/add_location" class="add-button">Add Location</a>
     </div>
-
+    
     <div class="table">
         <h2>Appointments</h2>
         <table>
@@ -161,7 +162,7 @@
         </table>
         <a href="/admin/add_appointment" class="add-button">Add Appointment</a>
     </div>
-
+    
     <div class="table">
         <h2>Reviews</h2>
         <table>
@@ -203,7 +204,7 @@
         </table>
         <a href="/admin/add_review" class="add-button">Add Review</a>
     </div>
-
+    
     <div class="table">
         <h2>Rentals</h2>
         <table>
@@ -241,7 +242,7 @@
         </table>
         <a href="/admin/add_rental" class="add-button">Add Rental</a>
     </div>
-
+    
     <div class="table">
         <h2>Transactions</h2>
         <table>
@@ -271,7 +272,7 @@
         </table>
         <a href="/admin/add_transaction" class="add-button">Add Transaction</a>
     </div>
-
+    
     <div class="table">
         <h2>Reports</h2>
         <table>
@@ -297,7 +298,7 @@
         </table>
         <a href="/admin/add_report" class="add-button">Add Report</a>
     </div>
-
+    
     <div class="table">
         <h2>Payments</h2>
         <table>
@@ -329,7 +330,7 @@
         </table>
         <a href="/admin/add_payment" class="add-button">Add Payment</a>
     </div>
-
+    
     <div class="table">
         <h2>Vehicle Maintenance History</h2>
         <table>
@@ -357,8 +358,47 @@
         </table>
         <a href="/admin/add_maintenance" class="add-button">Add Maintenance</a>
     </div>
+    
+    <div class="table">
+        <h2>Admin</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>   
+                <th>DOB</th>
+                <th>Gender</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Address</th>
+                <th>Appointment count</th>
+                <th>Actions</th>
+            </tr>
+            {% for ad in admin %}
+            <tr>
+                <td>{{ ad.admin_ID }}</td>
+                <td>{{ ad.admin_firstname }}</td>
+                <td>{{ ad.admin_lastname }}</td>
+                <td>{{ ad.admin_dob }}</td>
+                <td>{{ ad.admin_gender }}</td>
+                <td>{{ ad.admin_email }}</td>
+                <td>{{ ad.admin_phonenumber }}</td>
+                <td>{{ ad.admin_address }}</td>
+                <td>{{ ad.admin_appointment_count }}</td>
+                <td>{{ ad.admin_password}}</td>
 
+                <td>
+                    <a href="/admin/edit_admin/{{ ad.admin_ID }}" class="edit-button">Edit</a>
+                    <a href="/admin/delete_admin/{{ ad.admin_ID }}" class="delete-button">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="/admin/add_admin" class="add-button">Add Admin</a>
+    </div>
     <!-- Add more tables for other database tables -->
-
+    
 </body>
 </html>
+
+{% endblock %}

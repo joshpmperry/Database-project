@@ -1,31 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Edit Payment</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <h1>Edit Payment</h1>
-    <form method="POST" action="/admin/edit_payment/{{ payment.payment_ID }}">
-        <label for="rental_ID">Rental ID:</label>
-        <input type="number" id="rental_ID" name="rental_ID" value="{{ payment.rental_ID }}" required>
-
-        <label for="admin_ID">Admin ID:</label>
-        <input type="number" id="admin_ID" name="admin_ID" value="{{ payment.admin_ID }}" required>
-
-        <label for="customer_ID">Customer ID:</label>
-        <input type="number" id="customer_ID" name="customer_ID" value="{{ payment.customer_ID }}" required>
-
-        <label for="payment_amount">Amount:</label>
-        <input type="number" step="0.01" id="payment_amount" name="payment_amount" value="{{ payment.payment_amount }}" required>
-
-        <label for="payment_added_charges">Added Charges:</label>
-        <input type="number" id="payment_added_charges" name="payment_added_charges" value="{{ payment.payment_added_charges }}">
-
-        <label for="payment_datetime">Date and Time:</label>
-        <input type="datetime-local" id="payment_datetime" name="payment_datetime" value="{{ payment.payment_datetime }}">
-
-        <input type="submit" value="Update Payment">
-    </form>
-</body>
-</html>
+    <head>
+        <title>Edit Payment</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <h1>Edit Payment</h1>
+        <form method="POST" action="/admin/edit_payment/{{ payment.payment_ID }}">
+            <label for="rental_ID">Rental ID:</label>
+            <input type="number" id="rental_ID" name="rental_ID" value="{{ payment.rental_ID }}" required>
+            
+            <label for="admin_ID">Admin ID:</label>
+            <input type="number" id="admin_ID" name="admin_ID" value="{{ payment.admin_ID }}" required>
+            
+            <label for="customer_ID">Customer ID:</label>
+            <input type="number" id="customer_ID" name="customer_ID" value="{{ payment.customer_ID }}" required>
+            
+            <label for="payment_amount">Amount:</label>
+            <input type="number" step="0.01" id="payment_amount" name="payment_amount" value="{{ payment.payment_amount }}" required>
+            
+            <label for="payment_added_charges">Added Charges:</label>
+            <input type="number" id="payment_added_charges" name="payment_added_charges" value="{{ payment.payment_added_charges }}">
+            
+            <label for="payment_datetime">Date and Time:</label>
+            <input type="datetime-local" id="payment_datetime" name="payment_datetime" value="{{ payment.payment_datetime }}">
+            
+            <input type="submit" value="Update Payment">
+        </form>
+    </body>
+    </html>
+    
+    {% endblock %}

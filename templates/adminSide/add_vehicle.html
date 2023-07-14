@@ -1,63 +1,67 @@
+{% extends 'base.html' %}
+{% block content %}
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Add Vehicle</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <h1>Add Vehicle</h1>
-    <form method="POST" action="/admin/add_vehicle">
-        <!-- Add input fields for vehicle details -->
-
-        <label for="location_ID">Type:</label>
-        <input type="text" id="location_ID" name="location_ID" required>
-
-        <label for="vehicle_type">Location_ID:</label>
-        <input type="text" id="vehicle_type" name="vehicle_type" required>
-
-        <label for="vehicle_brand">Brand:</label>
-        <input type="text" id="vehicle_brand" name="vehicle_brand" required>
-
-        <label for="vehicle_model">Model:</label>
-        <input type="text" id="vehicle_model" name="vehicle_model" required>
-
-        <label for="vehicle_color">Color:</label>
-        <input type="text" id="vehicle_color" name="vehicle_color" required>
-
-        <label for="vehicle_gasoline_type">Gasoline Type:</label>
-        <input type="text" id="vehicle_gasoline_type" name="vehicle_gasoline_type">
-
-        <label for="vehicle_license_plate">License Plate:</label>
-        <input type="text" id="vehicle_license_plate" name="vehicle_license_plate" required>
-
-        <label for="vehicle_insured">Insured:</label>
-        <input type="checkbox" id="vehicle_insured" name="vehicle_insured">
-
-        <label for="vehicle_insurance_expiry">Insurance Expiry:</label>
+    <head>
+        <title>Add Vehicle</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <h1>Add Vehicle</h1>
+        <form method="POST" action="/admin/add_vehicle">
+            <!-- Add input fields for vehicle details -->
+            
+            <label for="location_ID">Type:</label>
+            <input type="text" id="location_ID" name="location_ID" required>
+            
+            <label for="vehicle_type">Location_ID:</label>
+            <input type="text" id="vehicle_type" name="vehicle_type" required>
+            
+            <label for="vehicle_brand">Brand:</label>
+            <input type="text" id="vehicle_brand" name="vehicle_brand" required>
+            
+            <label for="vehicle_model">Model:</label>
+            <input type="text" id="vehicle_model" name="vehicle_model" required>
+            
+            <label for="vehicle_color">Color:</label>
+            <input type="text" id="vehicle_color" name="vehicle_color" required>
+            
+            <label for="vehicle_gasoline_type">Gasoline Type:</label>
+            <input type="text" id="vehicle_gasoline_type" name="vehicle_gasoline_type">
+            
+            <label for="vehicle_license_plate">License Plate:</label>
+            <input type="text" id="vehicle_license_plate" name="vehicle_license_plate" required>
+            
+            <label for="vehicle_insured">Insured:</label>
+            <input type="checkbox" id="vehicle_insured" name="vehicle_insured">
+            
+            <label for="vehicle_insurance_expiry">Insurance Expiry:</label>
         <input type="date" id="vehicle_insurance_expiry" name="vehicle_insurance_expiry">
-
+        
         <label for="vehicle_condition">Condition:</label>
         <input type="text" id="vehicle_condition" name="vehicle_condition" required>
-
+        
         <label for="vehicle_milage">Milage:</label>
         <input type="number" id="vehicle_milage" name="vehicle_milage" required>
-
+        
         <label for="vehicle_passenger">Passenger:</label>
         <input type="number" id="vehicle_passenger" name="vehicle_passenger" required>
-
+        
         <label for="vehicle_gear_type">Gear Type:</label>
         <input type="text" id="vehicle_gear_type" name="vehicle_gear_type" required>
-
+        
         <label for="vehicle_available">Available:</label>
         <input type="checkbox" id="vehicle_available" name="vehicle_available">
-
+        
         <label for="vehicle_price_per_day">Price per Day:</label>
         <input type="number" step="0.01" id="vehicle_price_per_day" name="vehicle_price_per_day" required>
-
+        
         <label for="location_ID">Location ID:</label>
         <input type="number" id="location_ID" name="location_ID" required>
-
+        
         <input type="submit" value="Add Vehicle">
     </form>
 </body>
 </html>
+
+{% endblock %}
