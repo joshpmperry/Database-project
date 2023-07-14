@@ -347,6 +347,7 @@ def edit_customer(id):
         customer_payment_card_exp = form_details['customer_payment_card_expiry_date']
         customer_password = form_details['customer_password']
         
+        hashed_pw = generate_password_hash(customer_password) 
         # Extract other customer details...
 
         # Update the customer details in the database
@@ -358,7 +359,7 @@ def edit_customer(id):
                 f"    customer_identification_number = '{customer_identification_number}', customer_passport = '{customer_passport}',"
                 f"    customer_payment_type = '{customer_payment_type}', customer_payment_card_number = '{customer_payment_card_number}',"
                 f"    customer_payment_card_cvc = '{customer_payment_card_cvc}', customer_payment_card_expiry_date = '{customer_payment_card_exp}',"
-                f"    customer_password = '{customer_password}'"
+                f"    customer_password = '{hashed_pw}'"
                 f"    WHERE customer_ID = {customer['customer_ID']};"
                 )
         
