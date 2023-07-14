@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+<link rel="stylesheet" href='/static/home.css' />
+
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <img src="https://cdn-icons-png.flaticon.com/128/3085/3085411.png">
+                    <h3>VEHICLES</h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div class="content">
+                    <p>Find the right vehicle for your ride.</p>
+                        <a href="{{ url_for('vehicle') }}">Read More</a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <img src="https://cdn-icons-png.flaticon.com/128/2377/2377874.png">
+                    <h3>LOCATIONS</h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div class="content">
+                    <p>See all our available locations nearest and convenient to you.</p>
+                        <a href="{{ url_for('location') }}">Read More</a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <img src="https://cdn-icons-png.flaticon.com/128/2460/2460877.png">
+                    <h3>APPOINTMENT</h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div class="content">
+                    <p>Make an appointment to get your vehicle.</p>
+                        <a href="{{ url_for('appointment') }}">Read More</a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <img src="https://cdn-icons-png.flaticon.com/128/668/668709.png">
+                    <h3>Admin Page</h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div class="content">
+                    <p>Admin page for making changes to the database.</p>
+                        <a href="{{ url_for('adminhome') }}">Go to</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}
