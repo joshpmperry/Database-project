@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Customer</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Add Customer</h1>
+    <form method="POST" action="/admin/add_customer">
+        <!-- Add input fields for customer details -->
+        <label for="customer_firstname">First Name:</label>
+        <input type="text" id="customer_firstname" name="customer_firstname" required>
+
+        <!-- Add more input fields for other customer details -->
+
+        <input type="submit" value="Add Customer">
+    </form>
+</body>
+</html>

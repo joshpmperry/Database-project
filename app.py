@@ -47,7 +47,7 @@ def reservation(id):
 
 @app.route('/maintenance/<int:id>')
 def maintenance(id):
-    vehicle_id = request.args.get('vehicle_ID')  # Access the URL parameter
+    vehicle_id = request.args.get('vehicle_ID')
 
     cur = mysql.connection.cursor()
     query = "SELECT * FROM vehicle_maintenance_history WHERE vehicle_ID = %s"
@@ -298,27 +298,154 @@ def my_blogs():
 @app.route('/adminhome/')
 def adminhome():
     cur = mysql.connection.cursor()
-    resultValue =  cur.execute("SELECT * FROM vehicle")
-    print(resultValue)
-    if resultValue > 0:
-        blogs = cur.fetchall()
-        cur.close()
-        return render_template('adminhome.html', blogs=blogs)
+    # Retrieve data from customer table
+    cur.execute("SELECT * FROM customer")
+    customers = cur.fetchall()
+
+    # Retrieve data from vehicle table
+    cur.execute("SELECT * FROM vehicle")
+    vehicles = cur.fetchall()
+
     cur.close()
-    return render_template('adminhome.html', blogs=None)
+    return render_template('adminhome.html', customers=customers, vehicles=vehicles)
 
 
-@app.route('/admin_vehicle/')
-def admin_vehicle():
+# Add customer
+@app.route('/admin/add_customer', methods=['GET', 'POST'])
+def add_customer():
+    if request.method == 'GET':
+        return render_template('add_customer.html')
+    elif request.method == 'POST':
+        form_details = request.form
+
+        # Extract form data
+        customer_firstname = form_details['customer_firstname']
+        # Extract other customer details...
+
+        # Save the customer details to the database
+        cur = mysql.connection.cursor()
+        query = "INSERT INTO customer (customer_firstname, ...) VALUES (%s, ...)"
+        cur.execute(query, (customer_firstname, ...))
+        mysql.connection.commit()
+        cur.close()
+
+        flash("Customer added successfully.", "success")
+        return redirect('/adminhome')
+
+    return render_template('add_customer.html')
+
+
+# Edit customer
+@app.route('/admin/edit_customer/<int:id>', methods=['GET', 'POST'])
+def edit_customer(id):
     cur = mysql.connection.cursor()
-    resultValue =  cur.execute("SELECT * FROM vehicle")
-    print(resultValue)
-    if resultValue > 0:
-        vehicle = cur.fetchall()
-        cur.close()
-        return render_template('car.html', cars=vehicle)
+    query = f"SELECT * FROM customer WHERE customer_ID = '{id}'"
+    cur.execute(query)
+    customer = cur.fetchone()
     cur.close()
-    return render_template('car.html', cars=None)
+
+    if request.method == 'GET':
+        return render_template('edit_customer.html', customer=customer)
+    elif request.method == 'POST':
+        form_details = request.form
+
+        # Extract form data
+        customer_firstname = form_details['customer_firstname']
+        # Extract other customer details...
+
+        # Update the customer details in the database
+        cur = mysql.connection.cursor()
+        query = "UPDATE customer SET customer_firstname = %s, ... WHERE customer_ID = %s"
+        cur.execute(query, (customer_firstname, ..., id))
+        mysql.connection.commit()
+        cur.close()
+
+        flash("Customer updated successfully.", "success")
+        return redirect('/adminhome')
+
+    return render_template('edit_customer.html', customer=customer)
+
+
+# Delete customer
+@app.route('/admin/delete_customer/<int:id>', methods=['POST'])
+def delete_customer(id):
+    cur = mysql.connection.cursor()
+    query = f"DELETE FROM customer WHERE customer_ID = '{id}'"
+    cur.execute(query)
+    mysql.connection.commit()
+    cur.close()
+
+    flash("Customer deleted successfully.", "success")
+    return redirect('/adminhome')
+
+
+# Add vehicle
+@app.route('/admin/add_vehicle', methods=['GET', 'POST'])
+def add_vehicle():
+    if request.method == 'GET':
+        return render_template('add_vehicle.html')
+    elif request.method == 'POST':
+        form_details = request.form
+
+        # Extract form data
+        vehicle_type = form_details['vehicle_type']
+        # Extract other vehicle details...
+
+        # Save the vehicle details to the database
+        cur = mysql.connection.cursor()
+        query = "INSERT INTO vehicle (vehicle_type, ...) VALUES (%s, ...)"
+        cur.execute(query, (vehicle_type, ...))
+        mysql.connection.commit()
+        cur.close()
+
+        flash("Vehicle added successfully.", "success")
+        return redirect('/adminhome')
+
+    return render_template('add_vehicle.html')
+
+
+# Edit vehicle
+@app.route('/admin/edit_vehicle/<int:id>', methods=['GET', 'POST'])
+def edit_vehicle(id):
+    cur = mysql.connection.cursor()
+    query = f"SELECT * FROM vehicle WHERE vehicle_ID = '{id}'"
+    cur.execute(query)
+    vehicle = cur.fetchone()
+    cur.close()
+
+    if request.method == 'GET':
+        return render_template('edit_vehicle.html', vehicle=vehicle)
+    elif request.method == 'POST':
+        form_details = request.form
+
+        # Extract form data
+        vehicle_type = form_details['vehicle_type']
+        # Extract other vehicle details...
+
+        # Update the vehicle details in the database
+        cur = mysql.connection.cursor()
+        query = "UPDATE vehicle SET vehicle_type = %s, ... WHERE vehicle_ID = %s"
+        cur.execute(query, (vehicle_type, ..., id))
+        mysql.connection.commit()
+        cur.close()
+
+        flash("Vehicle updated successfully.", "success")
+        return redirect('/adminhome')
+
+    return render_template('edit_vehicle.html', vehicle=vehicle)
+
+
+# Delete vehicle
+@app.route('/admin/delete_vehicle/<int:id>', methods=['POST'])
+def delete_vehicle(id):
+    cur = mysql.connection.cursor()
+    query = f"DELETE FROM vehicle WHERE vehicle_ID = '{id}'"
+    cur.execute(query)
+    mysql.connection.commit()
+    cur.close()
+
+    flash("Vehicle deleted successfully.", "success")
+    return redirect('/adminhome')
 
 
 if __name__ == '__main__':

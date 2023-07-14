@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Vehicle</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Edit Vehicle</h1>
+    <form method="POST" action="/admin/edit_vehicle/{{ vehicle.vehicle_ID }}">
+        <!-- Add input fields with pre-filled values for vehicle details -->
+        <label for="vehicle_type">Type:</label>
+        <input type="text" id="vehicle_type" name="vehicle_type" value="{{ vehicle.vehicle_type }}" required>
+
+        <!-- Add more input fields with pre-filled values for other vehicle details -->
+
+        <input type="submit" value="Update Vehicle">
+    </form>
+</body>
+</html>

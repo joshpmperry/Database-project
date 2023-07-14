@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Vehicle</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Add Vehicle</h1>
+    <form method="POST" action="/admin/add_vehicle">
+        <!-- Add input fields for vehicle details -->
+        <label for="vehicle_type">Type:</label>
+        <input type="text" id="vehicle_type" name="vehicle_type" required>
+
+        <!-- Add more input fields for other vehicle details -->
+
+        <input type="submit" value="Add Vehicle">
+    </form>
+</body>
+</html>
