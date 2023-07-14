@@ -1,29 +1,84 @@
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-th, td {
-    text-align: left;
-    padding: 8px;
-}
-
-th {
-    background-color: #f2f2f2;
-}
-
-tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-h1 {
+/* Style for edit button */
+.edit-button {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: bold;
     text-align: center;
+    text-decoration: none;
+    background-color: #428bca;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
 }
 
+/* Style for edit button on hover */
+.edit-button:hover {
+    background-color: #3071a9;
+}
+
+/* Style for delete button */
+.delete-button {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    background-color: #d9534f;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* Style for delete button on hover */
+.delete-button:hover {
+    background-color: #c9302c;
+}
+
+/* Style for add button */
+.add-button {
+    display: inline-block;
+    padding: 8px 16px;
+    margin-top: 10px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.add-button:hover {
+    background-color: #45a049;
+}
+
+/* Style for tables */
 .table {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
-a {
-    margin-right: 5px;
+.table table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+
+.table th, .table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-align: left;
+}
+
+.table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.table tr:hover {
+    background-color: #f5f5f5;
 }

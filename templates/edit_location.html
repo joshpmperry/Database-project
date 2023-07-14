@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Location</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Edit Location</h1>
+    <form method="POST" action="/admin/edit_location/{{ location.location_ID }}">
+        <label for="location_country">Country:</label>
+        <input type="text" id="location_country" name="location_country" value="{{ location.location_country }}" required>
+
+        <label for="location_state">State:</label>
+        <input type="text" id="location_state" name="location_state" value="{{ location.location_state }}" required>
+
+        <label for="location_city">City:</label>
+        <input type="text" id="location_city" name="location_city" value="{{ location.location_city }}" required>
+
+        <label for="location_address">Address:</label>
+        <input type="text" id="location_address" name="location_address" value="{{ location.location_address }}" required>
+
+        <label for="location_name">Name:</label>
+        <input type="text" id="location_name" name="location_name" value="{{ location.location_name }}" required>
+
+        <input type="submit" value="Update Location">
+    </form>
+</body>
+</html>

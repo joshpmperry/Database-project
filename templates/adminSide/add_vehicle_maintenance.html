@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Vehicle Maintenance</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Add Vehicle Maintenance</h1>
+    <form method="POST" action="/admin/add_vehicle_maintenance">
+        <!-- Add input fields for vehicle maintenance details -->
+        <label for="vehicle_ID">Vehicle ID:</label>
+        <input type="number" id="vehicle_ID" name="vehicle_ID" required>
+
+        <label for="maintenance_type">Maintenance Type:</label>
+        <input type="text" id="maintenance_type" name="maintenance_type" required>
+
+        <label for="maintenance_datetime">Date and Time:</label>
+        <input type="datetime-local" id="maintenance_datetime" name="maintenance_datetime" required>
+
+        <label for="maintenance_finished">Finished:</label>
+        <input type="checkbox" id="maintenance_finished" name="maintenance_finished">
+
+        <input type="submit" value="Add Vehicle Maintenance">
+    </form>
+</body>
+</html>

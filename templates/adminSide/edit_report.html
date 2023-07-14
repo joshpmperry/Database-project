@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Report</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Edit Report</h1>
+    <form method="POST" action="/admin/edit_report/{{ report.report_ID }}">
+        <label for="rental_ID">Rental ID:</label>
+        <input type="number" id="rental_ID" name="rental_ID" value="{{ report.rental_ID }}" required>
+
+        <label for="transaction_ID">Transaction ID:</label>
+        <input type="number" id="transaction_ID" name="transaction_ID" value="{{ report.transaction_ID }}" required>
+
+        <label for="report_datetime">Date and Time:</label>
+        <input type="datetime-local" id="report_datetime" name="report_datetime" value="{{ report.report_datetime }}" required>
+
+        <input type="submit" value="Update Report">
+    </form>
+</body>
+</html>

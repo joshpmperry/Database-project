@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Review</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Edit Review</h1>
+    <form method="POST" action="/admin/edit_review/{{ review.review_ID }}">
+        <label for="vehicle_ID">Vehicle ID:</label>
+        <input type="number" id="vehicle_ID" name="vehicle_ID" value="{{ review.vehicle_ID }}" required>
+
+        <label for="customer_ID">Customer ID:</label>
+        <input type="number" id="customer_ID" name="customer_ID" value="{{ review.customer_ID }}" required>
+
+        <label for="review_content">Review Content:</label>
+        <textarea id="review_content" name="review_content" rows="4" cols="50" required>{{ review.review_content }}</textarea>
+
+        <label for="review_date_time">Date and Time:</label>
+        <input type="datetime-local" id="review_date_time" name="review_date_time" value="{{ review.review_date_time }}" required>
+
+        <label for="review_value_for_money">Value for Money:</label>
+        <input type="number" step="0.1" min="0" max="10" id="review_value_for_money" name="review_value_for_money" value="{{ review.review_value_for_money }}" required>
+
+        <label for="review_easy_to_find">Easy to Find:</label>
+        <input type="number" step="0.1" min="0" max="10" id="review_easy_to_find" name="review_easy_to_find" value="{{ review.review_easy_to_find }}" required>
+
+        <label for="review_drop_off_speed">Drop-off Speed:</label>
+        <input type="number" step="0.1" min="0" max="10" id="review_drop_off_speed" name="review_drop_off_speed" value="{{ review.review_drop_off_speed }}" required>
+
+        <label for="review_pick_up_speed">Pick-up Speed:</label>
+        <input type="number" step="0.1" min="0" max="10" id="review_pick_up_speed" name="review_pick_up_speed" value="{{ review.review_pick_up_speed }}" required>
+
+        <label for="review_car_cleanliness">Car Cleanliness:</label>
+        <input type="number" step="0.1" min="0" max="10" id="review_car_cleanliness" name="review_car_cleanliness" value="{{ review.review_car_cleanliness }}" required>
+
+        <label for="review_helpfulness">Helpfulness:</label>
+        <input type="number" step="0.1" min="0" max="10" id="review_helpfulness" name="review_helpfulness" value="{{ review.review_helpfulness }}" required>
+
+        <label for="review_car_condition">Car Condition:</label>
+        <input type="number" step="0.1" min="0" max="10" id="review_car_condition" name="review_car_condition" value="{{ review.review_car_condition }}" required>
+
+        <input type="submit" value="Update Review">
+    </form>
+</body>
+</html>

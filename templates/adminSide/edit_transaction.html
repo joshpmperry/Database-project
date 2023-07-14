@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Transaction</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Edit Transaction</h1>
+    <form method="POST" action="/admin/edit_transaction/{{ transaction.transaction_ID }}">
+        <label for="customer_ID">Customer ID:</label>
+        <input type="number" id="customer_ID" name="customer_ID" value="{{ transaction.customer_ID }}" required>
+
+        <label for="vehicle_ID">Vehicle ID:</label>
+        <input type="number" id="vehicle_ID" name="vehicle_ID" value="{{ transaction.vehicle_ID }}" required>
+
+        <label for="rental_ID">Rental ID:</label>
+        <input type="number" id="rental_ID" name="rental_ID" value="{{ transaction.rental_ID }}" required>
+
+        <label for="admin_ID">Admin ID:</label>
+        <input type="number" id="admin_ID" name="admin_ID" value="{{ transaction.admin_ID }}" required>
+
+        <label for="transaction_datetime">Date and Time:</label>
+        <input type="datetime-local" id="transaction_datetime" name="transaction_datetime" value="{{ transaction.transaction_datetime }}" required>
+
+        <input type="submit" value="Update Transaction">
+    </form>
+</body>
+</html>

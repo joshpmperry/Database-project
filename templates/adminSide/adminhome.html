@@ -13,7 +13,17 @@
                 <th>ID</th>
                 <th>First Name</th>
                 <th>Last Name</th>
+                <th>Date of Birth</th>
+                <th>Gender</th>
                 <th>Email</th>
+                <th>Phone Number</th>
+                <th>Address</th>
+                <th>Identification Number</th>
+                <th>Passport</th>
+                <th>Payment Type</th>
+                <th>Payment Card Number</th>
+                <th>Payment Card CVC</th>
+                <th>Payment Card Expiry Date</th>
                 <th>Actions</th>
             </tr>
             {% for customer in customers %}
@@ -21,15 +31,25 @@
                 <td>{{ customer.customer_ID }}</td>
                 <td>{{ customer.customer_firstname }}</td>
                 <td>{{ customer.customer_lastname }}</td>
+                <td>{{ customer.customer_dob }}</td>
+                <td>{{ customer.customer_gender }}</td>
                 <td>{{ customer.customer_email }}</td>
+                <td>{{ customer.customer_phone_number }}</td>
+                <td>{{ customer.customer_address }}</td>
+                <td>{{ customer.customer_identification_number }}</td>
+                <td>{{ customer.customer_passport }}</td>
+                <td>{{ customer.customer_payment_type }}</td>
+                <td>{{ customer.customer_payment_card_number }}</td>
+                <td>{{ customer.customer_payment_card_cvc }}</td>
+                <td>{{ customer.customer_payment_card_expiry_date }}</td>
                 <td>
-                    <a href="/admin/edit_customer/{{ customer.customer_ID }}">Edit</a>
-                    <a href="/admin/delete_customer/{{ customer.customer_ID }}">Delete</a>
+                    <a href="/admin/edit_customer/{{ customer.customer_ID }}" class="edit-button">Edit</a>
+                    <a href="/admin/delete_customer/{{ customer.customer_ID }}" class="delete-button">Delete</a>
                 </td>
             </tr>
             {% endfor %}
         </table>
-        <a href="/admin/add_customer">Add Customer</a>
+        <a href="/admin/add_customer" class="add-button">Add Customer</a>
     </div>
 
     <div class="table">
@@ -40,6 +60,17 @@
                 <th>Type</th>
                 <th>Brand</th>
                 <th>Model</th>
+                <th>Color</th>
+                <th>Gasoline Type</th>
+                <th>License Plate</th>
+                <th>Insured</th>
+                <th>Insurance Expiry</th>
+                <th>Condition</th>
+                <th>Mileage</th>
+                <th>Passenger</th>
+                <th>Gear Type</th>
+                <th>Available</th>
+                <th>Price per Day</th>
                 <th>Actions</th>
             </tr>
             {% for vehicle in vehicles %}
@@ -48,14 +79,281 @@
                 <td>{{ vehicle.vehicle_type }}</td>
                 <td>{{ vehicle.vehicle_brand }}</td>
                 <td>{{ vehicle.vehicle_model }}</td>
+                <td>{{ vehicle.vehicle_color }}</td>
+                <td>{{ vehicle.vehicle_gasoline_type }}</td>
+                <td>{{ vehicle.vehicle_license_plate }}</td>
+                <td>{{ vehicle.vehicle_insured }}</td>
+                <td>{{ vehicle.vehicle_insurance_expiry }}</td>
+                <td>{{ vehicle.vehicle_condition }}</td>
+                <td>{{ vehicle.vehicle_milage }}</td>
+                <td>{{ vehicle.vehicle_passenger }}</td>
+                <td>{{ vehicle.vehicle_gear_type }}</td>
+                <td>{{ vehicle.vehicle_available }}</td>
+                <td>{{ vehicle.vehicle_price_per_day }}</td>
                 <td>
-                    <a href="/admin/edit_vehicle/{{ vehicle.vehicle_ID }}">Edit</a>
-                    <a href="/admin/delete_vehicle/{{ vehicle.vehicle_ID }}">Delete</a>
+                    <a href="/admin/edit_vehicle/{{ vehicle.vehicle_ID }}" class="edit-button">Edit</a>
+                    <a href="/admin/delete_vehicle/{{ vehicle.vehicle_ID }}" class="delete-button">Delete</a>
                 </td>
             </tr>
             {% endfor %}
         </table>
-        <a href="/admin/add_vehicle">Add Vehicle</a>
+        <a href="/admin/add_vehicle" class="add-button">Add Vehicle</a>
+    </div>
+
+    <div class="table">
+        <h2>Locations</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Country</th>
+                <th>State</th>
+                <th>City</th>
+                <th>Address</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+            {% for location in locations %}
+            <tr>
+                <td>{{ location.location_ID }}</td>
+                <td>{{ location.location_country }}</td>
+                <td>{{ location.location_state }}</td>
+                <td>{{ location.location_city }}</td>
+                <td>{{ location.location_address }}</td>
+                <td>{{ location.location_name }}</td>
+                <td>
+                    <a href="/admin/edit_location/{{ location.location_ID }}" class="edit-button">Edit</a>
+                    <a href="/admin/delete_location/{{ location.location_ID }}" class="delete-button">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="/admin/add_location" class="add-button">Add Location</a>
+    </div>
+
+    <div class="table">
+        <h2>Appointments</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Customer ID</th>
+                <th>Location ID</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Request</th>
+                <th>Actions</th>
+            </tr>
+            {% for appointment in appointments %}
+            <tr>
+                <td>{{ appointment.appointment_ID }}</td>
+                <td>{{ appointment.customer_ID }}</td>
+                <td>{{ appointment.location_ID }}</td>
+                <td>{{ appointment.appointment_date }}</td>
+                <td>{{ appointment.appointment_time }}</td>
+                <td>{{ appointment.appointment_request }}</td>
+                <td>
+                    <a href="/admin/edit_appointment/{{ appointment.appointment_ID }}" class="edit-button">Edit</a>
+                    <a href="/admin/delete_appointment/{{ appointment.appointment_ID }}" class="delete-button">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="/admin/add_appointment" class="add-button">Add Appointment</a>
+    </div>
+
+    <div class="table">
+        <h2>Reviews</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Vehicle ID</th>
+                <th>Customer ID</th>
+                <th>Content</th>
+                <th>Date/Time</th>
+                <th>Value for Money</th>
+                <th>Easy to Find</th>
+                <th>Drop-off Speed</th>
+                <th>Pick-up Speed</th>
+                <th>Car Cleanliness</th>
+                <th>Helpfulness</th>
+                <th>Car Condition</th>
+                <th>Actions</th>
+            </tr>
+            {% for review in reviews %}
+            <tr>
+                <td>{{ review.review_ID }}</td>
+                <td>{{ review.vehicle_ID }}</td>
+                <td>{{ review.customer_ID }}</td>
+                <td>{{ review.review_content }}</td>
+                <td>{{ review.review_date_time }}</td>
+                <td>{{ review.review_value_for_money }}</td>
+                <td>{{ review.review_easy_to_find }}</td>
+                <td>{{ review.review_drop_off_speed }}</td>
+                <td>{{ review.review_pick_up_speed }}</td>
+                <td>{{ review.review_car_cleanliness }}</td>
+                <td>{{ review.review_helpfulness }}</td>
+                <td>{{ review.review_car_condition }}</td>
+                <td>
+                    <a href="/admin/edit_review/{{ review.review_ID }}" class="edit-button">Edit</a>
+                    <a href="/admin/delete_review/{{ review.review_ID }}" class="delete-button">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="/admin/add_review" class="add-button">Add Review</a>
+    </div>
+
+    <div class="table">
+        <h2>Rentals</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Customer ID</th>
+                <th>Vehicle ID</th>
+                <th>Location ID</th>
+                <th>Admin ID</th>
+                <th>Loan Date</th>
+                <th>Return Date</th>
+                <th>Loan Time</th>
+                <th>Return Time</th>
+                <th>Total Payment</th>
+                <th>Actions</th>
+            </tr>
+            {% for rental in rentals %}
+            <tr>
+                <td>{{ rental.rental_ID }}</td>
+                <td>{{ rental.customer_ID }}</td>
+                <td>{{ rental.vehicle_ID }}</td>
+                <td>{{ rental.location_ID }}</td>
+                <td>{{ rental.admin_ID }}</td>
+                <td>{{ rental.rental_loan_date }}</td>
+                <td>{{ rental.rental_return_date }}</td>
+                <td>{{ rental.rental_loan_time }}</td>
+                <td>{{ rental.rental_return_time }}</td>
+                <td>{{ rental.rental_total_payment }}</td>
+                <td>
+                    <a href="/admin/edit_rental/{{ rental.rental_ID }}" class="edit-button">Edit</a>
+                    <a href="/admin/delete_rental/{{ rental.rental_ID }}" class="delete-button">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="/admin/add_rental" class="add-button">Add Rental</a>
+    </div>
+
+    <div class="table">
+        <h2>Transactions</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Customer ID</th>
+                <th>Vehicle ID</th>
+                <th>Rental ID</th>
+                <th>Admin ID</th>
+                <th>Date/Time</th>
+                <th>Actions</th>
+            </tr>
+            {% for transaction in transactions %}
+            <tr>
+                <td>{{ transaction.transaction_ID }}</td>
+                <td>{{ transaction.customer_ID }}</td>
+                <td>{{ transaction.vehicle_ID }}</td>
+                <td>{{ transaction.rental_ID }}</td>
+                <td>{{ transaction.admin_ID }}</td>
+                <td>{{ transaction.transaction_datetime }}</td>
+                <td>
+                    <a href="/admin/edit_transaction/{{ transaction.transaction_ID }}" class="edit-button">Edit</a>
+                    <a href="/admin/delete_transaction/{{ transaction.transaction_ID }}" class="delete-button">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="/admin/add_transaction" class="add-button">Add Transaction</a>
+    </div>
+
+    <div class="table">
+        <h2>Reports</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Rental ID</th>
+                <th>Transaction ID</th>
+                <th>Date/Time</th>
+                <th>Actions</th>
+            </tr>
+            {% for report in reports %}
+            <tr>
+                <td>{{ report.report_ID }}</td>
+                <td>{{ report.rental_ID }}</td>
+                <td>{{ report.transaction_ID }}</td>
+                <td>{{ report.report_datetime }}</td>
+                <td>
+                    <a href="/admin/edit_report/{{ report.report_ID }}" class="edit-button">Edit</a>
+                    <a href="/admin/delete_report/{{ report.report_ID }}" class="delete-button">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="/admin/add_report" class="add-button">Add Report</a>
+    </div>
+
+    <div class="table">
+        <h2>Payments</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Rental ID</th>
+                <th>Admin ID</th>
+                <th>Customer ID</th>
+                <th>Amount</th>
+                <th>Added Charges</th>
+                <th>Date/Time</th>
+                <th>Actions</th>
+            </tr>
+            {% for payment in payments %}
+            <tr>
+                <td>{{ payment.payment_ID }}</td>
+                <td>{{ payment.rental_ID }}</td>
+                <td>{{ payment.admin_ID }}</td>
+                <td>{{ payment.customer_ID }}</td>
+                <td>{{ payment.payment_amount }}</td>
+                <td>{{ payment.payment_added_charges }}</td>
+                <td>{{ payment.payment_datetime }}</td>
+                <td>
+                    <a href="/admin/edit_payment/{{ payment.payment_ID }}" class="edit-button">Edit</a>
+                    <a href="/admin/delete_payment/{{ payment.payment_ID }}" class="delete-button">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="/admin/add_payment" class="add-button">Add Payment</a>
+    </div>
+
+    <div class="table">
+        <h2>Vehicle Maintenance History</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Vehicle ID</th>
+                <th>Maintenance Type</th>   
+                <th>Date/Time</th>
+                <th>Finished</th>
+                <th>Actions</th>
+            </tr>
+            {% for maintenance in maintenance_history %}
+            <tr>
+                <td>{{ maintenance.vehicle_maintenance_ID }}</td>
+                <td>{{ maintenance.vehicle_ID }}</td>
+                <td>{{ maintenance.maintenance_type }}</td>
+                <td>{{ maintenance.maintenance_datetime }}</td>
+                <td>{{ maintenance.maintenance_finished }}</td>
+                <td>
+                    <a href="/admin/edit_maintenance/{{ maintenance.vehicle_maintenance_ID }}" class="edit-button">Edit</a>
+                    <a href="/admin/delete_maintenance/{{ maintenance.vehicle_maintenance_ID }}" class="delete-button">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="/admin/add_maintenance" class="add-button">Add Maintenance</a>
     </div>
 
     <!-- Add more tables for other database tables -->

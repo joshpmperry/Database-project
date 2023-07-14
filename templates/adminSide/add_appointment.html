@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Appointment</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Add Appointment</h1>
+    <form method="POST" action="/admin/add_appointment">
+        <!-- Add input fields for appointment details -->
+        <label for="customer_ID">Customer ID:</label>
+        <input type="number" id="customer_ID" name="customer_ID" required>
+
+        <label for="location_ID">Location ID:</label>
+        <input type="number" id="location_ID" name="location_ID" required>
+
+        <label for="appointment_date">Date:</label>
+        <input type="date" id="appointment_date" name="appointment_date" required>
+
+        <label for="appointment_time">Time:</label>
+        <input type="time" id="appointment_time" name="appointment_time" required>
+
+        <label for="appointment_request">Request:</label>
+        <textarea id="appointment_request" name="appointment_request"></textarea>
+
+        <input type="submit" value="Add Appointment">
+    </form>
+</body>
+</html>
