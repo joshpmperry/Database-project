@@ -57,6 +57,7 @@
         <table>
             <tr>
                 <th>ID</th>
+                <th>Location ID</th>
                 <th>Type</th>
                 <th>Brand</th>
                 <th>Model</th>
@@ -76,6 +77,7 @@
             {% for vehicle in vehicles %}
             <tr>
                 <td>{{ vehicle.vehicle_ID }}</td>
+                <td>{{ vehicle.location_ID }}</td>
                 <td>{{ vehicle.vehicle_type }}</td>
                 <td>{{ vehicle.vehicle_brand }}</td>
                 <td>{{ vehicle.vehicle_model }}</td>
@@ -122,7 +124,7 @@
                 <td>{{ location.location_name }}</td>
                 <td>
                     <a href="/admin/edit_location/{{ location.location_ID }}" class="edit-button">Edit</a>
-                    <a href="/admin/delete_location/{{ location.location_ID }}" class="delete-button">Delete</a>
+                    <a href="/admin/delete_location/{{location.location_ID }}" class="delete-button">Delete</a>
                 </td>
             </tr>
             {% endfor %}

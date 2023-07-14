@@ -8,7 +8,11 @@
     <h1>Add Vehicle</h1>
     <form method="POST" action="/admin/add_vehicle">
         <!-- Add input fields for vehicle details -->
-        <label for="vehicle_type">Type:</label>
+
+        <label for="location_ID">Type:</label>
+        <input type="text" id="location_ID" name="location_ID" required>
+
+        <label for="vehicle_type">Location_ID:</label>
         <input type="text" id="vehicle_type" name="vehicle_type" required>
 
         <label for="vehicle_brand">Brand:</label>
