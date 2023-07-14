@@ -22,9 +22,9 @@ def index():
     if resultValue > 0:
         blogs = cur.fetchall()
         cur.close()
-        return render_template('index.html', blogs=blogs)
+        return render_template('customerSide/index.html', blogs=blogs)
     cur.close()
-    return render_template('index.html', blogs=None)
+    return render_template('customerSide/index.html', blogs=None)
 
 
 @app.route('/about/')
@@ -33,7 +33,7 @@ def about():
 
 @app.route('/location/')
 def location():
-    return render_template('location.html')
+    return render_template('customerSide/location.html')
 
 @app.route('/reservation/<int:id>')
 def reservation(id):
@@ -43,7 +43,7 @@ def reservation(id):
     vehicle = cur.fetchall()
     cur.close()
 
-    return render_template('reservation.html', cars=vehicle)
+    return render_template('customerSide/reservation.html', cars=vehicle)
 
 @app.route('/maintenance/<int:id>')
 def maintenance(id):
@@ -55,11 +55,11 @@ def maintenance(id):
     vehicle = cur.fetchall()
     cur.close()
 
-    return render_template('maintenance.html', cars=vehicle)
+    return render_template('customerSide/maintenance.html', cars=vehicle)
 
 @app.route('/vehicle/')
 def vehicle():
-    return render_template('vehicle.html')
+    return render_template('customerSide/vehicle.html')
 
 @app.route('/appointment/', methods=['GET', 'POST'])
 def appointment():
@@ -70,7 +70,7 @@ def appointment():
         if resultValue > 0:
             locations = cur.fetchall()
             cur.close()
-            return render_template('appointment.html', locations=locations)
+            return render_template('customerSide/appointment.html', locations=locations)
     elif request.method == 'POST':
         formDetail = request.form
         if session['login'] != True:
@@ -92,8 +92,8 @@ def appointment():
             mysql.connection.commit()
             flash("Form Submitted Successfully.", "success")
             cur.close()
-            return render_template("index.html")
-    return render_template('appointment.html')
+            return render_template("customerSide/index.html")
+    return render_template('customerSide/appointment.html')
 
 @app.route('/sedan/')
 def sedan():
@@ -170,12 +170,12 @@ def phuket():
 
 @app.route('/test/', methods=['GET', 'POST'])
 def test():
-    return render_template('test.html')
+    return render_template('customerSide/test.html')
 
 @app.route('/register/', methods=['GET', 'POST'])
 def register():
     if request.method == 'GET':
-        return render_template('register.html')
+        return render_template('customerSide/register.html')
     elif request.method == 'POST':
         userDetails = request.form
         
@@ -274,7 +274,7 @@ def profile():
         cur.execute(query)
         appointments = cur.fetchall()
         cur.close()
-    return render_template('profile.html', appointments=appointments, )
+    return render_template('customerSide/profile.html', appointments=appointments, )
 
 
 @app.route('/adminhome/')
@@ -289,14 +289,14 @@ def adminhome():
     vehicles = cur.fetchall()
 
     cur.close()
-    return render_template('adminhome.html', customers=customers, vehicles=vehicles)
+    return render_template('adminSide/adminhome.html', customers=customers, vehicles=vehicles)
 
 
 # Add customer
 @app.route('/admin/add_customer', methods=['GET', 'POST'])
 def add_customer():
     if request.method == 'GET':
-        return render_template('add_customer.html')
+        return render_template('adminSide/add_customer.html')
     elif request.method == 'POST':
         form_details = request.form
 
@@ -312,9 +312,9 @@ def add_customer():
         cur.close()
 
         flash("Customer added successfully.", "success")
-        return redirect('/adminhome')
+        return redirect('adminSide/adminhome')
 
-    return render_template('add_customer.html')
+    return render_template('adminside/add_customer.html')
 
 
 # Edit customer
@@ -327,7 +327,7 @@ def edit_customer(id):
     cur.close()
 
     if request.method == 'GET':
-        return render_template('edit_customer.html', customer=customer)
+        return render_template('adminSide/edit_customer.html', customer=customer)
     elif request.method == 'POST':
         form_details = request.form
 
@@ -367,10 +367,9 @@ def edit_customer(id):
         mysql.connection.commit()
         cur.close()
 
-        flash("Customer updated successfully.", "success")
         return redirect('/adminhome')
 
-    return render_template('edit_customer.html', customer=customer)
+    return render_template('adminSide/edit_customer.html', customer=customer, flash_message="Customer updated successfully.")
 
 
 # Delete customer
@@ -390,7 +389,7 @@ def delete_customer(id):
 @app.route('/admin/add_vehicle', methods=['GET', 'POST'])
 def add_vehicle():
     if request.method == 'GET':
-        return render_template('add_vehicle.html')
+        return render_template('adminside/add_vehicle.html')
     elif request.method == 'POST':
         form_details = request.form
 
@@ -406,9 +405,9 @@ def add_vehicle():
         cur.close()
 
         flash("Vehicle added successfully.", "success")
-        return redirect('/adminhome')
+        return redirect('adminhome')
 
-    return render_template('add_vehicle.html')
+    return render_template('adminside/add_vehicle.html')
 
 
 # Edit vehicle
@@ -421,7 +420,7 @@ def edit_vehicle(id):
     cur.close()
 
     if request.method == 'GET':
-        return render_template('edit_vehicle.html', vehicle=vehicle)
+        return render_template('adminside/edit_vehicle.html', vehicle=vehicle)
     elif request.method == 'POST':
         form_details = request.form
 
@@ -437,9 +436,9 @@ def edit_vehicle(id):
         cur.close()
 
         flash("Vehicle updated successfully.", "success")
-        return redirect('/adminhome')
+        return redirect('adminhome')
 
-    return render_template('edit_vehicle.html', vehicle=vehicle)
+    return render_template('adminside/edit_vehicle.html', vehicle=vehicle)
 
 
 # Delete vehicle
