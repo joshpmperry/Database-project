@@ -35,14 +35,41 @@ def about():
 def location():
     return render_template('customerSide/location.html')
 
-@app.route('/reservation/<int:id>')
+@app.route('/reservation/<int:id>', methods=['GET', 'POST'])
 def reservation(id):
-    cur = mysql.connection.cursor()
-    query = f"SELECT * FROM vehicle WHERE vehicle_ID = '{id}'"
-    cur.execute(query)
-    vehicle = cur.fetchall()
-    cur.close()
-
+    if request.method == 'GET':
+        cur = mysql.connection.cursor()
+        query = f"SELECT * FROM vehicle WHERE vehicle_ID = '{id}'"
+        if query > 0:
+            vehicle = cur.fetchall()
+            cur.close()
+            return render_template('customerSide/reservations.html', cars=vehicle)
+    elif request.method == 'POST':
+        formDetail = request.form
+        if session['login'] != True:
+            return redirect('/login')
+        else:
+            cur = mysql.connection.cursor()
+            car = f"SELECT * FROM vehicle WHERE vehicle_ID = '{id}'"
+            
+            l1 = session['id']
+            c1 = id
+            local = car['location_ID']
+            l2 = formDetail['rental_loan_date']
+            l3 = formDetail['rental_return_date']
+            l4 = formDetail['rental_loan_time']
+            l5 = formDetail['rental_return_time']
+            l6 = formDetail['rental_total_payment']
+            
+            queryStatement = (
+                f"Insert into rental(customer_ID, vehicle_ID, location_ID, admin_ID, rental_loan_date, rental_return_date, rental_loan_time, rental_return_time, rental_total_payment) value('{l1}', '{c1}', '{local}', 0, '{l2}', '{l3}', '{l4}', '{l5}', {l6})"
+            )
+            cur = mysql.connection.cursor()
+            cur.execute(queryStatement)
+            mysql.connection.commit()
+            flash("Form Submitted Successfully.", "success")
+            cur.close()
+            return render_template("customerSide/index.html")
     return render_template('customerSide/reservation.html', cars=vehicle)
 
 @app.route('/maintenance/<int:id>')
@@ -175,7 +202,7 @@ def test():
 @app.route('/register/', methods=['GET', 'POST'])
 def register():
     if request.method == 'GET':
-        return render_template('customerSide/register.html')
+        return render_template('register.html')
     elif request.method == 'POST':
         userDetails = request.form
         
